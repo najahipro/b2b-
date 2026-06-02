@@ -5,8 +5,8 @@ import { TrustMarquee } from '@/components/trust-marquee'
 import { Capabilities } from '@/components/capabilities'
 import { OrbitalIntegrations } from '@/components/orbital-integrations'
 import { FeaturedWork } from '@/components/featured-work'
+import { HowWeWork } from '@/components/how-we-work'
 import { Faq } from '@/components/faq'
-import { BlogPreview } from '@/components/blog-preview'
 import { Footer } from '@/components/footer'
 
 export default function HomePage() {
@@ -20,7 +20,7 @@ export default function HomePage() {
         <Capabilities />
         <OrbitalIntegrations />
         <FeaturedWork />
-        <BlogPreview />
+        <HowWeWork />
         <Faq />
       </main>
       <Footer />

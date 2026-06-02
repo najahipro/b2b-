@@ -1,30 +1,16 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-
-const founders = [
-  {
-    name: 'Salah',
-    role: 'Lead Full-Stack Engineer & System Architect',
-    bio: 'Architected massive-scale systems including the Numa ERP platform (140+ database tables) and AlloClients multi-tenant SaaS. 1st Prize Winner at MoroccoAI Hackathon for NLP pipelines. Expert in React.js, Node.js, Laravel, and complex cloud infrastructure.',
-    expertise: ['System Architecture', 'PostgreSQL', 'Kubernetes', 'Go', 'TypeScript'],
-  },
-  {
-    name: 'Amina',
-    role: 'Lead Full-Stack Engineer & UI/UX Expert',
-    bio: 'Bringing 6+ years of experience in frontend and mobile development, Amina leads all client-facing application development, focused on crafting high-performance, beautiful interfaces and mobile ecosystems.',
-    expertise: ['React', 'Next.js', 'React Native', 'TypeScript', 'UI/UX'],
-  },
-]
 
 const values = [
   {
     title: 'Technical Excellence',
-    description: 'We write code we\'re proud of. Every system is architected for scale, maintainability, and performance from day one.',
+    description: 'I write code I\'m proud of. Every system is architected for scale, maintainability, and performance from day one.',
   },
   {
     title: 'Direct Communication',
-    description: 'No account managers or intermediaries. You work directly with the engineers building your system.',
+    description: 'No account managers or intermediaries. You work directly with the engineer building your system.',
   },
   {
     title: 'Full Transparency',
@@ -32,7 +18,7 @@ const values = [
   },
   {
     title: 'Complete Ownership',
-    description: 'Your code, your infrastructure, your IP. We build systems that you fully own and control.',
+    description: 'Your code, your infrastructure, your IP. I build systems that you fully own and control.',
   },
 ]
 
@@ -42,18 +28,20 @@ export default function AboutPage() {
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-24 lg:py-32 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-                About Us
+                About
               </p>
               <h1 className="mt-4 text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-                Two senior engineers building enterprise systems
+                Senior System Architect & Lead Engineer
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                DigitoMaroc is a dedicated two-person engineering team. We&apos;re not an agency 
-                with layers of management—we&apos;re the architects who design and build your systems directly.
+                DigitoMaroc is led by a dedicated technical expert. You're not working with an agency with layers of management—you work directly with the architect designing and building your systems.
               </p>
             </div>
           </div>
@@ -65,22 +53,14 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
               <div>
                 <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground mb-6">
-                  Our Story
+                  Engineering Philosophy
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    After years of working at agencies and seeing the same problems—miscommunication, 
-                    junior developers on senior projects, endless meetings with no code written—we 
-                    decided there had to be a better way.
+                    My engineering philosophy is built on technical autonomy, clean architecture, and rapid delivery. Over the past few years, I have successfully bridged the gap between complex business requirements and robust technical execution. 
                   </p>
                   <p>
-                    DigitoMaroc was born from a simple idea: what if clients could work directly with 
-                    the engineers building their systems? No middlemen, no outsourcing, no surprises.
-                  </p>
-                  <p>
-                    Today, we&apos;ve built and shipped over 50 enterprise systems for clients across 
-                    Europe, North America, and the Middle East. From multi-tenant ERPs processing 
-                    millions in transactions to mobile apps with tens of thousands of users.
+                    From building single-handedly massive enterprise SaaS ERP platforms to acting as a CTO for multi-tenant ecosystems, the goal is always complete end-to-end ownership.
                   </p>
                 </div>
               </div>
@@ -90,13 +70,13 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Based in Morocco, we operate in a timezone that overlaps with both European 
+                    Based in Morocco, I operate in a timezone that overlaps with both European 
                     and American business hours. This means real-time collaboration without the 
                     delays of traditional offshore development.
                   </p>
                   <p>
-                    Morocco&apos;s growing tech ecosystem has produced world-class engineering talent. 
-                    We bring that expertise to global clients at competitive rates without 
+                    Morocco's growing tech ecosystem has produced world-class engineering talent. 
+                    I bring that expertise to global clients at competitive rates without 
                     compromising on quality.
                   </p>
                 </div>
@@ -105,64 +85,69 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Founders Section */}
-        <section className="py-24 lg:py-32 bg-muted">
+        {/* Architect Section */}
+        <section className="py-24 lg:py-32 bg-muted relative">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="mb-16">
+            <div className="mb-16 text-center">
               <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-                The Team
+                The Architect
               </p>
               <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
-                Meet the founders
+                Meet your Architect
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {founders.map((founder) => (
-                <div
-                  key={founder.name}
-                  className="p-8 lg:p-10 bg-card rounded-2xl border border-border"
-                >
-                  <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
-                    <span className="text-3xl font-bold text-secondary">
-                      {founder.name[0]}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground">{founder.name}</h3>
-                  <p className="text-secondary mt-1">{founder.role}</p>
-                  <p className="mt-4 text-muted-foreground leading-relaxed">{founder.bio}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {founder.expertise.map((skill) => (
+            <div className="max-w-3xl mx-auto">
+              <div className="p-8 lg:p-12 bg-card rounded-3xl border border-border shadow-sm flex flex-col md:flex-row items-center md:items-start gap-8">
+                {/* Profile Image */}
+                <div className="w-32 h-32 md:w-48 md:h-48 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center border-2 border-secondary/20 overflow-hidden relative">
+                  <Image 
+                    src="/salah-profile.jpg" 
+                    alt="Salah E. - Lead Full-Stack Engineer" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                
+                {/* Content */}
+                <div className="text-center md:text-left">
+                  <h3 className="text-2xl font-bold text-foreground">Salah E.</h3>
+                  <p className="text-secondary font-medium mt-1">Lead Full-Stack Engineer & System Architect</p>
+                  <p className="mt-4 text-muted-foreground leading-relaxed">
+                    Specializing in building scalable SaaS platforms, enterprise ERPs, and AI-integrated digital ecosystems from the ground up. Architect of the Numa ERP platform (140+ database tables), Lead Developer for the AlloClients multi-tenant SaaS, and 1st Prize Winner at the MoroccoAI Hackathon for NLP pipelines.
+                  </p>
+                  <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
+                    {['Laravel', 'React.js', 'Node.js', 'Python', 'Cloud VPS & DevOps', 'System Architecture'].map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 text-xs font-medium bg-muted rounded-full text-muted-foreground"
+                        className="px-3 py-1.5 text-xs font-medium bg-muted rounded-full text-foreground/80 border border-border"
                       >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Values Section */}
-        <section className="py-24 lg:py-32 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="mb-16">
               <p className="text-sm font-medium uppercase tracking-wider text-secondary">
                 Our Values
               </p>
               <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
-                What we stand for
+                What I stand for
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {values.map((value) => (
-                <div key={value.title} className="p-6 lg:p-8">
-                  <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
+                <div key={value.title} className="p-8 bg-card rounded-2xl border border-border shadow-sm">
+                  <h3 className="text-xl font-bold text-foreground">{value.title}</h3>
                   <p className="mt-3 text-muted-foreground leading-relaxed">{value.description}</p>
                 </div>
               ))}
@@ -174,10 +159,10 @@ export default function AboutPage() {
         <section className="py-24 lg:py-32 bg-foreground text-primary-foreground">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-              Ready to work with us?
+              Ready to work with me?
             </h2>
             <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-              Let&apos;s discuss your project and see if we&apos;re the right fit for your team.
+              Let's discuss your project and see if I'm the right fit for your team.
             </p>
             <div className="mt-10">
               <Link

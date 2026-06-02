@@ -39,7 +39,7 @@ export function Faq() {
   }
 
   return (
-    <section className="relative py-24 lg:py-32 bg-background border-t border-border overflow-hidden">
+    <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 bg-background border-t border-border overflow-hidden">
       {/* Geometric Grid Background matching Hero */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
       

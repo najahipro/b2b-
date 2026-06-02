@@ -1,60 +1,63 @@
 import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 
 const projects = [
   {
-    slug: 'alloclients-erp',
-    title: 'AlloClients',
+    title: 'AlloClients SaaS Ecosystem',
     category: 'Multi-tenant ERP',
-    description: 'Complete client management system with invoicing, project tracking, and team collaboration for service agencies.',
-    metrics: ['500+ Active Users', '99.9% Uptime', '10TB Data Processed'],
-    techStack: ['Next.js', 'PostgreSQL', 'Stripe', 'Vercel'],
+    description: 'Architected a highly scalable, multi-tenant ERP ecosystem. Engineered complex core modules for automated financial workflows, strict RBAC, and real-time bidirectional data synchronization.',
+    techStack: ['Laravel', 'React.js', 'MySQL'],
+    href: 'https://app.allo-clients.com/lp',
     featured: true,
   },
   {
-    slug: 'numa-platform',
-    title: 'Numa Platform',
+    title: 'Numa ERP System',
     category: 'SaaS Platform',
-    description: 'Enterprise inventory and supply chain management with real-time analytics and predictive restocking.',
-    metrics: ['$2M+ Transactions', '45% Cost Reduction', '12 Integrations'],
-    techStack: ['React', 'Node.js', 'Redis', 'GCP'],
+    description: 'Single-handedly architected and built a massive enterprise SaaS ERP platform (140+ database tables). Features comprehensive modules for Finance, Advanced Stock Control, CRM, and HR management.',
+    techStack: ['Next.js', 'Laravel', 'PostgreSQL'],
+    href: '',
     featured: true,
   },
   {
-    slug: 'medtrack-mobile',
-    title: 'MedTrack',
-    category: 'Mobile Application',
-    description: 'Healthcare compliance tracking app with offline sync, biometric auth, and HIPAA-compliant data handling.',
-    metrics: ['50K+ Downloads', '4.8 App Rating', 'HIPAA Certified'],
-    techStack: ['React Native', 'Firebase', 'AWS'],
+    title: 'OHM Web Platform',
+    category: 'Frontend Interface',
+    description: 'Developed the frontend interface for INRH\'s OHM platform. Built with Angular and TypeScript, featuring pixel-perfect responsive design and seamless Strapi CMS integration.',
+    techStack: ['Angular', 'Strapi CMS', 'TypeScript'],
+    href: 'https://ohm.ma/Home',
     featured: true,
   },
   {
-    slug: 'finserve-dashboard',
-    title: 'FinServe Dashboard',
-    category: 'Analytics Platform',
-    description: 'Real-time financial analytics dashboard with custom reporting, automated alerts, and regulatory compliance.',
-    metrics: ['$50M+ AUM Tracked', '200+ Reports/Day', 'SOC 2 Compliant'],
-    techStack: ['Next.js', 'TimescaleDB', 'Chart.js', 'AWS'],
+    title: 'Africa Tenders Data Platform',
+    category: 'Data Platform',
+    description: '1st Prize at MoroccoAI Hackathon 2022. Automated platform for scraping and analyzing African government public procurement contracts using advanced NLP techniques.',
+    techStack: ['Python', 'NLP', 'Selenium', 'Machine Learning'],
+    href: 'https://morocco.ai/events/conferences/MoroccoAI-Conference-2022/',
     featured: false,
   },
   {
-    slug: 'logisync-api',
-    title: 'LogiSync API',
-    category: 'API Infrastructure',
-    description: 'High-throughput logistics API handling route optimization, fleet tracking, and delivery scheduling.',
-    metrics: ['1M+ API Calls/Day', '99.99% Uptime', '50ms Avg Response'],
-    techStack: ['Go', 'PostgreSQL', 'Redis', 'Kubernetes'],
+    title: 'InfiniPrint E-commerce & Automation',
+    category: 'E-commerce',
+    description: 'Built a digital printing e-commerce platform with automated product management, featuring a WooCommerce storefront, Laravel admin dashboard, and Python-based supplier integration.',
+    techStack: ['WordPress', 'WooCommerce', 'Laravel', 'Python'],
+    href: 'https://infiniprint.ma/',
     featured: false,
   },
   {
-    slug: 'edulearn-lms',
-    title: 'EduLearn LMS',
-    category: 'Learning Platform',
-    description: 'Enterprise learning management system with video streaming, assessments, and certification tracking.',
-    metrics: ['100K+ Students', '5000+ Courses', '98% Completion Rate'],
-    techStack: ['Next.js', 'Mux', 'PostgreSQL', 'Vercel'],
+    title: 'ZemExpress & Klaid (CyberScale)',
+    category: 'Web & Mobile Apps',
+    description: 'Delivered multiple full-stack web and mobile applications as part of the CyberScale agency (France), including logistics platforms and enterprise connectivity services.',
+    techStack: ['Laravel', 'React.js', 'React Native', 'MySQL'],
+    href: 'https://www.cyber-scale.me/etudes-de-cas/',
+    featured: false,
+  },
+  {
+    title: 'GetProcure Platform',
+    category: 'Tender Management',
+    description: 'Built a tender management platform that aggregates public and private tenders globally with advanced search, smart matching, and automated scraping.',
+    techStack: ['React', 'Laravel', 'Python', 'Scrapy'],
+    href: 'https://www.hugedomains.com/domain_profile.cfm?d=getprocure.com',
     featured: false,
   },
 ]
@@ -86,70 +89,84 @@ export default function PortfolioPage() {
         <section className="pb-24 lg:pb-32 bg-background">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {projects.map((project) => (
-                <Link
-                  key={project.slug}
-                  href={`/portfolio/${project.slug}`}
-                  className="group relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-secondary/50 transition-colors"
-                >
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 z-10">
-                      <span className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full">
-                        Featured
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Project Preview */}
-                  <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 rounded-lg bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-secondary/30">
-                        {project.title[0]}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 p-6 lg:p-8">
-                    <span className="text-xs font-medium uppercase tracking-wider text-secondary">
-                      {project.category}
-                    </span>
-                    <h2 className="mt-2 text-xl font-semibold text-foreground group-hover:text-secondary transition-colors">
-                      {project.title}
-                    </h2>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Metrics */}
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {project.metrics.map((metric) => (
-                        <span
-                          key={metric}
-                          className="px-3 py-1 text-xs font-medium bg-muted rounded-full text-muted-foreground"
-                        >
-                          {metric}
+              {projects.map((project) => {
+                const CardInner = (
+                  <>
+                    {/* Featured Badge */}
+                    {project.featured && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full shadow-sm">
+                          Featured
                         </span>
-                      ))}
-                    </div>
+                      </div>
+                    )}
 
-                    {/* Tech Stack */}
-                    <div className="mt-6 pt-6 border-t border-border">
-                      <div className="flex flex-wrap gap-2">
-                        {project.techStack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-xs font-medium text-foreground/70"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                    {/* Project Preview */}
+                    <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center border-b border-border">
+                      <div className="w-3/4 h-3/4 rounded-lg bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center shadow-inner">
+                        <span className="text-4xl font-bold text-secondary/30">
+                          {project.title[0]}
+                        </span>
                       </div>
                     </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-1 p-6 lg:p-8">
+                      <span className="text-xs font-medium uppercase tracking-wider text-secondary">
+                        {project.category}
+                      </span>
+                      <h2 className="mt-2 text-xl font-semibold text-foreground group-hover:text-secondary transition-colors">
+                        {project.title}
+                      </h2>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      <div className="mt-auto pt-6">
+                        {/* Visit Live Project */}
+                        {project.href && (
+                          <div className="flex items-center gap-2 mb-6 text-sm font-medium text-muted-foreground group-hover:text-secondary transition-colors">
+                            <ArrowUpRight className="w-4 h-4" />
+                            <span>Visit Live Project</span>
+                          </div>
+                        )}
+
+                        {/* Tech Stack */}
+                        <div className="pt-6 border-t border-border">
+                          <div className="flex flex-wrap gap-2">
+                            {project.techStack.map((tech) => (
+                              <span
+                                key={tech}
+                                className="text-xs font-medium text-foreground/70"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                );
+
+                const baseClasses = "group relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-secondary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full";
+
+                return project.href ? (
+                  <a
+                    key={project.title}
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={baseClasses}
+                  >
+                    {CardInner}
+                  </a>
+                ) : (
+                  <div key={project.title} className={baseClasses}>
+                    {CardInner}
                   </div>
-                </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

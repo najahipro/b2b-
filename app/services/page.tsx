@@ -1,204 +1,194 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { Code2, ArrowRight } from 'lucide-react'
 
-const services = [
+const processTabs = [
   {
-    title: 'Custom SaaS Platforms',
-    description: 'Full-stack SaaS applications with multi-tenancy, subscription billing, and scalable architecture built for growth.',
-    features: [
-      'Multi-tenant architecture with data isolation',
-      'Subscription billing with Stripe integration',
-      'Role-based access control systems',
-      'Real-time collaboration features',
-      'API development for third-party integrations',
-      'Custom analytics and reporting dashboards',
-    ],
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-    ),
+    id: 'discovery',
+    phase: 'Phase A',
+    tabTitle: 'Discovery & Architecture',
+    title: 'System Blueprint & Database Design',
+    content: 'We start by analyzing your business logic to architect a robust foundation. We design the database schema, multi-tenant architecture, and define the exact API endpoints before a single line of code is written.',
+    tools: ['Figma', 'Draw.io', 'Notion'],
   },
   {
-    title: 'Multi-tenant ERPs',
-    description: 'Enterprise resource planning systems with complex workflows, role-based access, and real-time analytics dashboards.',
-    features: [
-      'Complex business workflow automation',
-      'Inventory and supply chain management',
-      'Financial reporting and compliance',
-      'Human resource management modules',
-      'Customer relationship management',
-      'Business intelligence and forecasting',
-    ],
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
+    id: 'development',
+    phase: 'Phase B',
+    tabTitle: 'Full-Stack Development',
+    title: 'Agile Development & API Integration',
+    content: 'We build the core system using modern, scalable frameworks. From complex backend logic and role-based access control (RBAC) to pixel-perfect, responsive frontend dashboards.',
+    tools: ['React.js', 'Laravel', 'Node.js', 'MySQL/PostgreSQL'],
   },
   {
-    title: 'Mobile Applications',
-    description: 'Native and cross-platform mobile apps with offline-first architecture, push notifications, and seamless sync.',
-    features: [
-      'Cross-platform development with React Native',
-      'Offline-first architecture with sync',
-      'Biometric authentication integration',
-      'Push notifications and real-time updates',
-      'App Store and Play Store deployment',
-      'Performance optimization and monitoring',
-    ],
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Cloud & DevOps',
-    description: 'Infrastructure as code, CI/CD pipelines, container orchestration, and monitoring for production-grade deployments.',
-    features: [
-      'Infrastructure as Code with Terraform',
-      'Kubernetes cluster setup and management',
-      'CI/CD pipeline implementation',
-      'Monitoring and alerting systems',
-      'Security hardening and compliance',
-      'Cost optimization and resource management',
-    ],
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-      </svg>
-    ),
-  },
-]
-
-const process = [
-  {
-    step: '01',
-    title: 'Discovery',
-    description: 'We dive deep into your business requirements, technical constraints, and growth objectives to understand the full scope.',
-  },
-  {
-    step: '02',
-    title: 'Architecture',
-    description: 'We design a comprehensive system architecture, database schema, and infrastructure plan tailored to your needs.',
-  },
-  {
-    step: '03',
-    title: 'Development',
-    description: 'Iterative development with weekly sprints, continuous deployment, and real-time progress visibility.',
-  },
-  {
-    step: '04',
-    title: 'Handoff',
-    description: 'Complete documentation, knowledge transfer, and ongoing support to ensure your team can maintain the system.',
+    id: 'deployment',
+    phase: 'Phase C',
+    tabTitle: 'DevOps & Deployment',
+    title: 'Cloud Infrastructure & CI/CD',
+    content: 'Your system is deployed on secure, high-availability infrastructure. We set up automated deployment pipelines, horizontal scaling rules, and ensure zero-downtime updates.',
+    tools: ['GitHub Actions', 'Linux VPS', 'Docker', 'Cloudflare'],
   },
 ]
 
 export default function ServicesPage() {
+  const [activeTab, setActiveTab] = useState(processTabs[0].id)
+
+  const activeContent = processTabs.find((t) => t.id === activeTab)!
+
   return (
     <>
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-24 lg:py-32 bg-background">
+        <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-                Our Services
-              </p>
-              <h1 className="mt-4 text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-                End-to-end engineering for complex systems
-              </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                From initial architecture to production deployment, we handle the entire 
-                technical stack so you can focus on your business.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Grid */}
-        <section className="pb-24 lg:pb-32 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  className="p-8 lg:p-10 bg-card rounded-2xl border border-border"
-                >
-                  <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-secondary/10 text-secondary">
-                    {service.icon}
-                  </div>
-                  <h2 className="mt-6 text-2xl font-semibold text-foreground">
-                    {service.title}
-                  </h2>
-                  <p className="mt-4 text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                  <ul className="mt-8 space-y-3">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <svg className="mt-1 w-5 h-5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-24 lg:py-32 bg-muted">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-                Our Process
-              </p>
-              <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-balance">
-                How we work with clients
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {process.map((item) => (
-                <div key={item.step}>
-                  <div className="text-5xl font-bold text-secondary/30">{item.step}</div>
-                  <h3 className="mt-4 text-xl font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24 lg:py-32 bg-foreground text-primary-foreground">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-              Ready to start your project?
-            </h2>
-            <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-              Get direct access to senior engineers who will architect and build your system from the ground up.
-            </p>
-            <div className="mt-10">
-              <Link
-                href="/start"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-medium bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
+            <div className="flex flex-col lg:flex-row items-center gap-16">
+              
+              {/* Text Content */}
+              <motion.div 
+                className="flex-1 text-center lg:text-left"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                Request Private Discord
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-6">
+                  <Code2 className="w-4 h-4" />
+                  Services & Process
+                </div>
+                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground text-balance">
+                  Our Engineering Process
+                </h1>
+                <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                  At DigitoMaroc, we don't just write code; we architect scalable systems. Our methodical approach ensures high-performance SaaS and ERP platforms delivered with zero friction.
+                </p>
+              </motion.div>
+
+              {/* Images */}
+              <motion.div 
+                className="flex-1 relative w-full max-w-lg lg:max-w-none"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+              >
+                <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square w-full">
+                  <div className="absolute top-0 right-0 w-3/4 h-3/4 rounded-3xl overflow-hidden border-8 border-background shadow-2xl z-10">
+                    <Image
+                      src="/architecture.jpg"
+                      alt="Engineering Architecture"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-2/3 rounded-3xl overflow-hidden border-8 border-background shadow-2xl z-20 bg-background">
+                    <Image
+                      src="/development.jpg"
+                      alt="Code IDE"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto block"
+                    />
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
+
+        {/* Interactive Process Section */}
+        <section className="py-24 lg:py-32 bg-muted/50 border-y border-border">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+              
+              {/* Vertical Tabs */}
+              <div className="w-full lg:w-1/3 flex flex-col gap-4">
+                {processTabs.map((tab) => {
+                  const isActive = activeTab === tab.id
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`text-left p-6 rounded-2xl transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-card shadow-md border border-border ring-1 ring-secondary/50' 
+                          : 'hover:bg-card/50 text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <span className={`text-xs font-bold uppercase tracking-wider mb-2 block ${isActive ? 'text-secondary' : 'text-muted-foreground'}`}>
+                        {tab.phase}
+                      </span>
+                      <h3 className={`text-lg font-semibold ${isActive ? 'text-foreground' : ''}`}>
+                        {tab.tabTitle}
+                      </h3>
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Tab Content */}
+              <div className="w-full lg:w-2/3 flex items-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -20, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="bg-card border border-border rounded-3xl p-8 lg:p-12 shadow-sm w-full"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-6">
+                      {activeContent.title}
+                    </h2>
+                    <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+                      {activeContent.content}
+                    </p>
+                    
+                    <div>
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">
+                        Tools & Technologies
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {activeContent.tools.map((tool) => (
+                          <span 
+                            key={tool} 
+                            className="px-4 py-2 bg-muted rounded-full text-sm font-medium text-foreground/80 border border-border"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA Section */}
+        <section className="py-24 lg:py-32 bg-gradient-to-br from-slate-900 to-indigo-950 text-white relative overflow-hidden">
+          {/* subtle overlay pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-balance mb-8">
+              Ready to architect your next big platform?
+            </h2>
+            <Link
+              href="/start"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300"
+            >
+              Start a Project
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </>
