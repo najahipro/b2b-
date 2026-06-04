@@ -47,8 +47,24 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Calendly Direct Embed - About Page */}
+        <div className="py-16 bg-slate-50 flex flex-col items-center justify-center text-center px-4 w-full border-b border-border">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 max-w-3xl leading-tight">
+            Book a <span className="text-blue-600">Free Consultation</span> and get a Customized Quote
+          </h2>
+          <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-sm border overflow-hidden">
+            <iframe
+              src="https://calendly.com/salah-elhint-dev/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+              width="100%"
+              height="800px"
+              frameBorder="0"
+              scrolling="yes"
+            ></iframe>
+          </div>
+        </div>
+
         {/* Story Section */}
-        <section className="pb-24 lg:pb-32 bg-background">
+        <section className="py-24 lg:py-32 bg-background">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
               <div>
@@ -155,28 +171,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 lg:py-32 bg-foreground text-primary-foreground">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-              Ready to work with me?
-            </h2>
-            <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-              Let's discuss your project and see if I'm the right fit for your team.
-            </p>
-            <div className="mt-10">
-              <Link
-                href="/start"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-medium bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
-              >
-                Start a Conversation
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </section>
+
       </main>
       <Footer />
     </>

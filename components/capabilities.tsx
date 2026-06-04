@@ -1,3 +1,5 @@
+import { CalendlyButton } from './calendly-button'
+
 const capabilities = [
   {
     title: 'Custom SaaS Platforms',
@@ -94,6 +96,14 @@ export function Capabilities() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 flex justify-center">
+          <CalendlyButton 
+            text="Book a Discovery Call" 
+            className="px-8 py-4 text-base rounded-lg"
+          />
         </div>
       </div>
     </section>

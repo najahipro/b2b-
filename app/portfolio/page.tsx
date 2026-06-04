@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { CalendlyButton } from '@/components/calendly-button'
 
 const projects = [
   {
@@ -92,57 +93,49 @@ export default function PortfolioPage() {
               {projects.map((project) => {
                 const CardInner = (
                   <>
-                    {/* Featured Badge */}
-                    {project.featured && (
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full shadow-sm">
-                          Featured
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Project Preview */}
-                    <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center border-b border-border">
-                      <div className="w-3/4 h-3/4 rounded-lg bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center shadow-inner">
-                        <span className="text-4xl font-bold text-secondary/30">
-                          {project.title[0]}
-                        </span>
-                      </div>
+                    {/* Image Placeholder */}
+                    <div className="w-full aspect-video bg-muted border-b border-border flex items-center justify-center">
+                      <span className="text-muted-foreground/50 text-sm font-medium">Image Placeholder</span>
                     </div>
 
-                    {/* Content */}
                     <div className="flex flex-col flex-1 p-6 lg:p-8">
-                      <span className="text-xs font-medium uppercase tracking-wider text-secondary">
-                        {project.category}
-                      </span>
-                      <h2 className="mt-2 text-xl font-semibold text-foreground group-hover:text-secondary transition-colors">
+                      {/* Header: Featured Project + Category Pill */}
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                          {project.featured ? 'FEATURED PROJECT' : 'PROJECT'}
+                        </span>
+                        <span className="text-[10px] font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                          {project.category}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-2xl font-bold text-foreground mb-6 group-hover:text-secondary transition-colors text-balance">
                         {project.title}
-                      </h2>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
+                      </h3>
 
-                      <div className="mt-auto pt-6">
-                        {/* Visit Live Project */}
-                        {project.href && (
-                          <div className="flex items-center gap-2 mb-6 text-sm font-medium text-muted-foreground group-hover:text-secondary transition-colors">
-                            <ArrowUpRight className="w-4 h-4" />
-                            <span>Visit Live Project</span>
-                          </div>
-                        )}
+                      {/* Description Card */}
+                      <div className="bg-muted/30 rounded-xl p-5 mb-8 flex-1 border border-border/50">
+                        <p className="text-sm font-light text-muted-foreground leading-relaxed">
+                          {project.description}
+                        </p>
+                      </div>
 
-                        {/* Tech Stack */}
-                        <div className="pt-6 border-t border-border">
-                          <div className="flex flex-wrap gap-2">
-                            {project.techStack.map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-xs font-medium text-foreground/70"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
+                      {/* Footer: Read Case Study + Tech Stack */}
+                      <div className="flex items-end justify-between mt-auto">
+                        <div className="flex items-center gap-2 text-secondary font-medium text-sm group-hover:opacity-80 transition-colors mr-4 mb-1">
+                          <span>Read Case Study</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                        <div className="flex flex-wrap justify-end gap-x-2 gap-y-2 max-w-[55%]">
+                          {project.techStack.map((tech) => (
+                            <span
+                              key={tech}
+                              className="text-[11px] font-medium text-foreground/70"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -181,15 +174,10 @@ export default function PortfolioPage() {
               Let&apos;s discuss your project requirements and create a system tailored to your business needs.
             </p>
             <div className="mt-10">
-              <Link
-                href="/start"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-medium bg-foreground text-primary-foreground rounded-lg hover:bg-foreground/90 transition-colors"
-              >
-                Start Your Project
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <CalendlyButton 
+                text="Book a Discovery Call" 
+                className="px-8 py-4 text-base rounded-lg"
+              />
             </div>
           </div>
         </section>

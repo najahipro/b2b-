@@ -6,28 +6,36 @@ import { Plus } from 'lucide-react'
 
 const faqs = [
   {
-    q: 'Are you a traditional agency or independent contractors?',
-    a: 'We are a dedicated two-person senior engineering team. You work directly with the architects writing your code, eliminating agency bloat, middlemen, and miscommunication.',
+    q: 'What payment methods do you accept, and is there a refund policy?',
+    a: 'We accept major credit cards, PayPal, and bank transfers. We also offer a 30-day money-back guarantee on all hosting plans.',
   },
   {
-    q: 'Do you offshore or outsource the development?',
-    a: 'Never. 100% of the system architecture, backend logic, and frontend design is built entirely in-house by us.',
+    q: 'Do you offer website migration services or assistance?',
+    a: 'Yes, our team can handle full website migration from your current host with minimal downtime. Just reach out and we\'ll manage the process.',
   },
   {
-    q: 'How do we communicate and track progress?',
-    a: 'We bypass slow email chains. All clients get a dedicated, private Discord server for real-time communication, paired with agile sprint tracking.',
+    q: 'What is your customer support like, and how can I get in touch with you?',
+    a: 'Our support team is available 24/7 via email, phone, and live chat. We also maintain a knowledge base for self-service help.',
   },
   {
-    q: 'Who owns the code and Intellectual Property (IP)?',
-    a: 'You do. Upon final payment, 100% IP rights, full Git repository access, and cloud infrastructure ownership are permanently transferred to you.',
+    q: 'What security measures do you have in place to protect my website and data?',
+    a: 'We use SSL encryption, firewalls, intrusion detection, and regular backups to keep your website and data fully protected.',
   },
   {
-    q: 'Will our internal team be able to maintain the system after handoff?',
-    a: 'Absolutely. We architect using modern, industry-standard stacks (like Next.js, React, Node.js, and PostgreSQL). We enforce clean code practices and comprehensive documentation to ensure a seamless transition to your internal engineers.',
+    q: 'What programming languages and technologies do you specialize in?',
+    a: 'We work with HTML, CSS, JavaScript, PHP, Python, Laravel, React, and more — plus CMS platforms like WordPress and e-commerce tools like Shopify.',
   },
   {
-    q: 'Do you offer ongoing support after the platform launches?',
-    a: 'Yes. While we ensure a smooth day-one handoff, we also offer dedicated post-launch support retainers to handle infrastructure scaling, continuous integration, and feature updates as your enterprise grows.',
+    q: 'What is your development process like, and how long does it typically take to complete a project?',
+    a: 'We follow a collaborative agile process with regular updates. Timelines depend on project scope and complexity — we\'ll provide a clear plan upfront.',
+  },
+  {
+    q: 'What is your pricing model, and what are your rates for development services?',
+    a: 'We offer both fixed-price and hourly models with competitive, transparent rates tailored to your project scope and budget.',
+  },
+  {
+    q: 'Can you develop a website or application that meets my specific requirements?',
+    a: 'Absolutely. We specialize in custom websites and applications built to match your exact requirements and business goals.',
   },
 ]
 

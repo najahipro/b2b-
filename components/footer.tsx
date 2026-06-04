@@ -21,7 +21,7 @@ export function Footer() {
       <Testimonials />
       <footer className="bg-background text-foreground border-t border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             
             {/* Left Column (Brand) */}
             <div>
@@ -69,6 +69,22 @@ export function Footer() {
                   <MapPin className="w-5 h-5 text-secondary shrink-0" />
                   <span>Casablanca, Morocco</span>
                 </li>
+              </ul>
+            </div>
+
+            {/* Legal & Company Info */}
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-4 relative inline-block">
+                Registered Office
+                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-secondary"></span>
+              </h3>
+              <ul className="mt-6 space-y-2 text-sm text-gray-400">
+                <li className="font-medium text-foreground">DigitoMaroc</li>
+                <li>(Represented by Salah Ait Lhint)</li>
+                <li>HAY IFRIQUIA RUE 21 N 06, Casablanca – Maroc</li>
+                <li className="pt-2">ICE : 003734117000059</li>
+                <li>IF : 66291238</li>
+                <li>Patente : 37301578</li>
               </ul>
             </div>
 

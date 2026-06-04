@@ -75,8 +75,9 @@ function TestimonialCard({ name, title, text, initials }: { name: string, title:
 
 export function Testimonials() {
   return (
-    <section className="pt-16 lg:pt-20 pb-24 lg:pb-32 bg-muted relative overflow-hidden">
-      <style>{`
+    <>
+      <section className="pt-16 lg:pt-20 pb-24 lg:pb-32 bg-muted relative overflow-hidden">
+        <style>{`
         @keyframes marquee-left {
           0% { transform: translateX(0); }
           100% { transform: translateX(calc(-50% - 1rem)); }
@@ -131,5 +132,6 @@ export function Testimonials() {
         </div>
       </div>
     </section>
+    </>
   )
 }

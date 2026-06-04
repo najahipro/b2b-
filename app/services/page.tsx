@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { Code2, ArrowRight } from 'lucide-react'
+import { CalendlyButton } from '@/components/calendly-button'
 
 const processTabs = [
   {
@@ -179,13 +180,10 @@ export default function ServicesPage() {
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-balance mb-8">
               Ready to architect your next big platform?
             </h2>
-            <Link
-              href="/start"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300"
-            >
-              Start a Project
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+            <CalendlyButton 
+              text="Book a Discovery Call" 
+              className="px-8 py-4 text-base rounded-xl"
+            />
           </div>
         </section>
 

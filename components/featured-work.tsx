@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
+import { CalendlyButton } from './calendly-button'
 
 const projects = [
   {
@@ -53,54 +54,51 @@ export function FeaturedWork() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => {
             const CardContent = (
-              <>
+              <div className="flex flex-col flex-1 p-6 lg:p-8">
+                <div className="w-full aspect-[16/9] bg-slate-200 rounded-t-xl mb-6 flex items-center justify-center text-slate-400 text-sm">Image Placeholder</div>
                 {/* Header: Featured Project + Role Pill */}
-                <div className="flex items-center justify-between mb-8">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    Featured Project
-                  </span>
-                  <span className="text-[10px] font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full whitespace-nowrap">
-                    {project.role}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 group-hover:text-secondary transition-colors text-balance">
-                  {project.title}
-                </h3>
-
-                {/* Description Card (Premium White) */}
-                <div className="bg-background rounded-2xl p-6 mb-8 flex-1 border border-border shadow-sm">
-                  <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Footer: Tech Stack + Icon */}
-                <div className="flex items-end justify-between mt-auto">
-                  <div className="flex flex-col gap-1 mr-4">
-                    {project.href && (
-                      <div className="flex items-center gap-2 text-muted-foreground group-hover:text-secondary transition-colors font-medium text-sm">
-                        <ArrowUpRight className="w-4 h-4" />
-                        <span>Visit Live Project</span>
-                      </div>
-                    )}
+                <div className="flex items-center justify-between mb-6">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                      Featured Project
+                    </span>
+                    <span className="text-[10px] font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                      {project.role}
+                    </span>
                   </div>
-                  <div className="flex flex-wrap justify-end gap-x-3 gap-y-2 max-w-[60%]">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[12px] font-medium text-foreground/70"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-foreground mb-6 group-hover:text-secondary transition-colors text-balance">
+                    {project.title}
+                  </h3>
+
+                  {/* Description Card */}
+                  <div className="bg-muted/30 rounded-xl p-5 mb-8 flex-1 border border-border/50">
+                    <p className="text-sm font-light text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Footer: Read Case Study + Tech Stack */}
+                  <div className="flex items-end justify-between mt-auto">
+                    <div className="flex items-center gap-2 text-secondary font-medium text-sm group-hover:opacity-80 transition-colors mr-4 mb-1">
+                      <span>Read Case Study</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-wrap justify-end gap-x-2 gap-y-2 max-w-[55%]">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[11px] font-medium text-foreground/70"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </>
             );
 
-            const cardClasses = "group flex flex-col p-8 bg-card rounded-[2rem] border border-border hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+            const cardClasses = "group flex flex-col bg-card rounded-[2rem] border border-border hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden";
 
             return project.href ? (
               <a
@@ -118,6 +116,14 @@ export function FeaturedWork() {
               </div>
             );
           })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 flex justify-center">
+          <CalendlyButton 
+            text="Book a Discovery Call" 
+            className="px-8 py-4 text-base rounded-lg"
+          />
         </div>
 
       </div>
