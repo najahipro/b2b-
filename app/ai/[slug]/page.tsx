@@ -319,6 +319,7 @@ function ProcessAutomation() {
           </p>
         </div>
 
+<<<<<<< HEAD
         {/* Zigzag Timeline */}
         <div className="relative max-w-4xl mx-auto mb-24 py-12">
           {/* Connecting Dashed Line */}
@@ -386,6 +387,47 @@ function ProcessAutomation() {
             </div>
 
           </div>
+=======
+        {/* Interlocking Gears & Workflow Canvas */}
+        <div className="w-full h-[500px] bg-card border border-border rounded-3xl shadow-xl mb-24 relative overflow-hidden flex items-center justify-center">
+           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:20px_20px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]" />
+           
+           <div className="relative z-10 w-[600px] h-[300px]">
+              {/* Gear 1 */}
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute top-10 left-10 text-secondary opacity-20">
+                 <Settings className="w-32 h-32" />
+              </motion.div>
+              {/* Gear 2 */}
+              <motion.div animate={{ rotate: -360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute top-24 left-36 text-secondary opacity-30">
+                 <Settings className="w-24 h-24" />
+              </motion.div>
+
+              {/* Workflow Nodes */}
+              <div className="absolute inset-0 flex items-center justify-between px-10">
+                 <div className="w-20 h-20 bg-background border-2 border-border rounded-2xl shadow-lg flex items-center justify-center z-20">
+                    <Database className="w-8 h-8 text-foreground" />
+                 </div>
+                 
+                 {/* Connection Path */}
+                 <div className="flex-1 h-1 bg-border relative">
+                    <motion.div animate={{ left: ['0%', '100%'] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-secondary rounded-full shadow-[0_0_10px_rgba(var(--secondary),1)]" />
+                 </div>
+
+                 <div className="w-20 h-20 bg-background border-2 border-border rounded-2xl shadow-lg flex items-center justify-center z-20">
+                    <Terminal className="w-8 h-8 text-foreground" />
+                 </div>
+
+                 {/* Connection Path */}
+                 <div className="flex-1 h-1 bg-border relative">
+                    <motion.div animate={{ left: ['0%', '100%'] }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }} className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-secondary rounded-full shadow-[0_0_10px_rgba(var(--secondary),1)]" />
+                 </div>
+
+                 <div className="w-20 h-20 bg-background border-2 border-secondary rounded-2xl shadow-lg flex items-center justify-center z-20 bg-secondary/10">
+                    <Layers className="w-8 h-8 text-secondary" />
+                 </div>
+              </div>
+           </div>
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

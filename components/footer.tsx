@@ -4,7 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Globe, Github, Linkedin } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+<<<<<<< HEAD
 import { Logo } from "./logo";
+=======
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
 
 const DiscordIcon = ({ className }: { className?: string }) => (
   <svg
@@ -27,10 +30,26 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {/* Left Column (Brand) */}
             <div>
+<<<<<<< HEAD
               <Link href="/" className="block mb-6 gap-2">
                 <Logo className="h-12 w-auto object-contain" />
               </Link>
               <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+=======
+              <Link href="/" className="flex items-center gap-2.5 inline-flex">
+                <Image
+                  src="/logo/logo.png"
+                  alt="Idmisk Logo"
+                  width={35}
+                  height={27}
+                  className="object-contain"
+                />
+                <span className="text-2xl font-bold tracking-tight text-foreground">
+                  <span className="text-secondary">{t('header.brand')}</span>
+                </span>
+              </Link>
+              <p className="mt-6 text-sm text-muted-foreground max-w-sm leading-relaxed">
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
                 {t('footer.desc')}
               </p>
               <div className="mt-6 flex items-center gap-4">
@@ -122,14 +141,20 @@ export function Footer() {
               </p>
               <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                 <input
+<<<<<<< HEAD
                   suppressHydrationWarning
+=======
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
                   type="email"
                   required
                   placeholder={t('footer.newsletterPlaceholder')}
                   className="w-full px-4 py-3 bg-card border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
                 />
                 <button
+<<<<<<< HEAD
                   suppressHydrationWarning
+=======
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
                   type="submit"
                   className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-medium py-3 rounded-lg transition-colors text-sm"
                 >

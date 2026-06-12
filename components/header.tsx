@@ -7,7 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CalendlyButton } from './calendly-button'
 import { ChevronDown } from 'lucide-react'
 import { useLanguage } from '@/hooks/use-language'
+<<<<<<< HEAD
 import { Logo } from './logo'
+=======
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
 
 const navItems = [
   { 
@@ -76,17 +79,26 @@ export function Header() {
     setOpenDropdown(openDropdown === nameKey ? null : nameKey)
   }
 
+<<<<<<< HEAD
   const renderLanguageSelector = () => (
     <div className="flex items-center gap-1 bg-muted/60 border border-border p-1 rounded-full text-[11px] font-semibold">
       <button 
         suppressHydrationWarning
+=======
+  const LanguageSelector = () => (
+    <div className="flex items-center gap-1 bg-muted/60 border border-border p-1 rounded-full text-[11px] font-semibold">
+      <button 
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
         onClick={() => setLanguage('en')} 
         className={`px-2 py-0.5 rounded-full transition-all duration-200 ${language === 'en' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
       >
         EN
       </button>
       <button 
+<<<<<<< HEAD
         suppressHydrationWarning
+=======
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
         onClick={() => setLanguage('fr')} 
         className={`px-2 py-0.5 rounded-full transition-all duration-200 ${language === 'fr' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
       >
@@ -100,8 +112,20 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-20'}`}>
           {/* Logo */}
+<<<<<<< HEAD
           <Link href="/" className="flex items-center gap-2">
             <Logo className="w-auto h-10 lg:h-12 object-contain transition-all duration-300" />
+=======
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo/logo.png"
+              alt="Idmisk Logo"
+              width={72}
+              height={56}
+              priority
+              className={`object-contain transition-all duration-300 ${scrolled ? 'h-9 lg:h-11' : 'h-11 lg:h-14'}`}
+            />
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
           </Link>
 
           {/* Desktop Navigation */}
@@ -144,15 +168,24 @@ export function Header() {
 
           {/* CTA & Language Toggle */}
           <div className="hidden lg:flex items-center gap-4">
+<<<<<<< HEAD
             {renderLanguageSelector()}
+=======
+            <LanguageSelector />
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
             <CalendlyButton text={t('header.bookCall')} />
           </div>
 
           {/* Mobile Menu Button + Language Switcher */}
           <div className="flex items-center gap-3 lg:hidden">
+<<<<<<< HEAD
             {renderLanguageSelector()}
             <button
               suppressHydrationWarning
+=======
+            <LanguageSelector />
+            <button
+>>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-foreground"
               aria-label="Toggle menu"
