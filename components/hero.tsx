@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion, useInView, animate } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { CalendlyButton } from './calendly-button'
+import { useLanguage } from '@/hooks/use-language'
 
 function AnimatedNumber({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -32,6 +33,8 @@ function AnimatedNumber({ value }: { value: string }) {
 }
 
 export function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative flex items-center justify-center pt-24 lg:pt-32 pb-8 lg:pb-12">
       {/* Background pattern */}
@@ -43,43 +46,42 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-8">
             <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
             <span className="text-sm font-medium text-secondary">
-              Available for Q1 2026 Projects
+              {t('hero.badge')}
             </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] text-balance">
-            We Architect & Build{' '}
-            <span className="text-secondary">Enterprise SaaS</span>
+          <h1 className={`font-bold tracking-tight text-foreground leading-[1.1] text-balance transition-all duration-300 ${t('hero.titleSpan').length > 25 ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' : 'text-4xl sm:text-5xl lg:text-7xl'}`}>
+            {t('hero.title')}
+            <span className="text-secondary block sm:inline mt-2 sm:mt-0">{t('hero.titleSpan')}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="mt-6 text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
-            No middlemen. No agency bloat. Just two senior engineers delivering 
-            production-grade systems directly to global enterprises.
+            {t('hero.subheadline')}
           </p>
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <CalendlyButton 
-              text="Book a Discovery Call" 
+              text={t('common.bookCall')} 
               className="w-full sm:w-auto px-8 py-4 text-base rounded-lg"
             />
             <Link
               href="/portfolio"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-medium bg-transparent text-foreground border border-border rounded-lg hover:bg-muted transition-colors"
             >
-              View Our Work
+              {t('common.viewWork')}
             </Link>
           </div>
 
           {/* Trust indicators */}
           <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { value: '5+', label: 'Enterprise Platforms Built' },
-              { value: '140+', label: 'Database Tables Architected' },
-              { value: '100%', label: 'IP Ownership Transfer' },
-              { value: '0', label: 'Outsourced Code' },
+              { value: '60+', label: t('hero.stat1Label') },
+              { value: '30+', label: t('hero.stat2Label') },
+              { value: '5+', label: t('hero.stat3Label') },
+              { value: '100%', label: t('hero.stat4Label') },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-5xl lg:text-6xl font-extrabold text-foreground">

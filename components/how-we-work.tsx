@@ -3,52 +3,56 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MessageCircle, Users, PencilRuler, Code2, CheckCircle, Rocket } from 'lucide-react'
-
-const steps = [
-  {
-    title: 'Initial Contact',
-    description: 'We start with a simple chat to understand your high-level needs and business goals.',
-    icon: <MessageCircle className="w-5 h-5 text-secondary" />,
-  },
-  {
-    title: 'Strategy Meeting',
-    description: 'A deep dive via Zoom or Discord to discuss your exact requirements and vision.',
-    icon: <Users className="w-5 h-5 text-secondary" />,
-  },
-  {
-    title: 'Project Blueprint',
-    description: 'You share your detailed plan, and we design the technical architecture and roadmap.',
-    icon: <PencilRuler className="w-5 h-5 text-secondary" />,
-  },
-  {
-    title: 'Iterative Development',
-    description: 'We start building. We maintain continuous communication so you can see progress at every stage.',
-    icon: <Code2 className="w-5 h-5 text-secondary" />,
-  },
-  {
-    title: 'Review & Testing',
-    description: 'We provide a live staging link. You test the features, review the progress, and give feedback.',
-    icon: <CheckCircle className="w-5 h-5 text-secondary" />,
-  },
-  {
-    title: 'Deployment & Go Live',
-    description: 'Final polish, custom domain linking, and officially launching your project to the world!',
-    icon: <Rocket className="w-5 h-5 text-secondary" />,
-  },
-]
+import { useLanguage } from '@/hooks/use-language'
 
 export function HowWeWork() {
+  const { t } = useLanguage()
+
+  const steps = [
+    {
+      title: t('howWeWork.step1Title'),
+      description: t('howWeWork.step1Desc'),
+      icon: <MessageCircle className="w-5 h-5 text-secondary" />,
+    },
+    {
+      title: t('howWeWork.step2Title'),
+      description: t('howWeWork.step2Desc'),
+      icon: <Users className="w-5 h-5 text-secondary" />,
+    },
+    {
+      title: t('howWeWork.step3Title'),
+      description: t('howWeWork.step3Desc'),
+      icon: <PencilRuler className="w-5 h-5 text-secondary" />,
+    },
+    {
+      title: t('howWeWork.step4Title'),
+      description: t('howWeWork.step4Desc'),
+      icon: <Code2 className="w-5 h-5 text-secondary" />,
+    },
+    {
+      title: t('howWeWork.step5Title'),
+      description: t('howWeWork.step5Desc'),
+      icon: <CheckCircle className="w-5 h-5 text-secondary" />,
+    },
+    {
+      title: t('howWeWork.step6Title'),
+      description: t('howWeWork.step6Desc'),
+      icon: <Rocket className="w-5 h-5 text-secondary" />,
+    },
+  ]
+
   return (
     <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-20">
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
-            How We Work
+            {t('howWeWork.label')}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            A clear, step-by-step process from our first chat to your project going live.
+            {t('howWeWork.subtitle')}
           </p>
         </div>
 
@@ -119,7 +123,7 @@ export function HowWeWork() {
             href="/start"
             className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
           >
-            Start a Project
+            {t('common.startProject')}
           </Link>
         </motion.div>
 

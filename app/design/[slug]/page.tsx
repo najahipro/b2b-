@@ -1,51 +1,18 @@
 'use client'
 
 import { notFound } from 'next/navigation'
-import { use, useState, useEffect, useRef } from 'react'
+import { use, useState, useRef } from 'react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { CalendlyButton } from '@/components/calendly-button'
+import { CallToActionSection } from '@/components/cta-section'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { MessageSquare, Layout, Layers, Pencil, LineChart, Target, Compass, Box, Image as ImageIcon, Sparkles, Palette, Type, ShoppingBag } from 'lucide-react'
-
-// --- Global CTA ---
-function DesignCTA() {
-  return (
-    <div className="w-full relative py-24 px-6 lg:px-8 mt-24">
-      <div className="max-w-4xl mx-auto relative z-10 p-12 md:p-20 rounded-[3rem] border border-white/20 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] overflow-hidden">
-        {/* Soft Background Gradients */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-400/40 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen" />
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-cyan-400/40 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen" />
-        </div>
-        
-        <div className="text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8 font-serif">
-            Let's Design Your Digital Future.
-          </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CalendlyButton 
-              text="Start a Design Project" 
-              className="w-full sm:w-auto px-8 py-4 text-base font-medium rounded-full bg-foreground text-background hover:scale-105 transition-transform"
-            />
-            <a
-              href="https://wa.me/212635278125"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium bg-[#25D366] text-white rounded-full hover:scale-105 transition-transform shadow-[0_10px_20px_rgba(37,211,102,0.2)]"
-            >
-              <MessageSquare className="w-5 h-5" />
-              Chat on WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+import Image from 'next/image'
+import { useLanguage } from '@/hooks/use-language'
 
 // --- Layout 1: UX/UI Prototyping ---
 function UxUiPrototyping() {
+  const { t } = useLanguage()
   const [sliderPosition, setSliderPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -62,10 +29,10 @@ function UxUiPrototyping() {
         
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Interfaces Engineered for User Retention.
+            {t("designServicePage.uxuiTitle")}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            We design intuitive, pixel-perfect user interfaces for complex SaaS and ERP platforms. Functionality meets flawless aesthetics.
+            {t("designServicePage.uxuiDesc")}
           </p>
         </div>
 
@@ -162,18 +129,18 @@ function UxUiPrototyping() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-card border border-border p-8 rounded-3xl">
               <Pencil className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Interactive Prototyping</h3>
-              <p className="text-muted-foreground">High-fidelity Figma prototypes to test user flows before a single line of code is written.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.uxuiFeature1Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.uxuiFeature1Desc")}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl">
               <Layout className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Enterprise Dashboards</h3>
-              <p className="text-muted-foreground">Clean, clutter-free UI design for systems with massive data output.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.uxuiFeature2Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.uxuiFeature2Desc")}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl">
               <Layers className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Design Systems</h3>
-              <p className="text-muted-foreground">Scalable component libraries ensuring absolute brand consistency across platforms.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.uxuiFeature3Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.uxuiFeature3Desc")}</p>
            </div>
         </div>
       </div>
@@ -183,6 +150,7 @@ function UxUiPrototyping() {
 
 // --- Layout 2: Digital Product Strategy ---
 function ProductStrategy() {
+  const { t } = useLanguage()
   const { scrollYProgress } = useScroll()
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1])
 
@@ -191,10 +159,10 @@ function ProductStrategy() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Strategy Before Execution.
+            {t("designServicePage.strategyTitle")}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            We align your business goals with technical realities to create a foolproof roadmap for your digital product.
+            {t("designServicePage.strategyDesc")}
           </p>
         </div>
 
@@ -214,8 +182,8 @@ function ProductStrategy() {
               {/* Milestone 1 */}
               <div className="flex items-center justify-between w-full">
                  <div className="w-5/12 text-right pr-12">
-                    <h3 className="text-2xl font-bold mb-2">Technical Discovery</h3>
-                    <p className="text-muted-foreground">Mapping out exact database and logic requirements.</p>
+                    <h3 className="text-2xl font-bold mb-2">{t("designServicePage.strategyFeature1Title")}</h3>
+                    <p className="text-muted-foreground">{t("designServicePage.strategyFeature1Desc")}</p>
                  </div>
                  <div className="w-10 h-10 rounded-full bg-card border-4 border-secondary flex items-center justify-center shadow-[0_0_15px_rgba(var(--secondary),0.5)] z-10">
                     <Compass className="w-4 h-4 text-secondary" />
@@ -234,16 +202,16 @@ function ProductStrategy() {
                     <LineChart className="w-4 h-4 text-secondary" />
                  </div>
                  <div className="w-5/12 pl-12">
-                    <h3 className="text-2xl font-bold mb-2">Conversion Optimization</h3>
-                    <p className="text-muted-foreground">Strategic placement of elements to drive B2B and e-commerce conversions.</p>
+                    <h3 className="text-2xl font-bold mb-2">{t("designServicePage.strategyFeature2Title")}</h3>
+                    <p className="text-muted-foreground">{t("designServicePage.strategyFeature2Desc")}</p>
                  </div>
               </div>
 
               {/* Milestone 3 */}
               <div className="flex items-center justify-between w-full">
                  <div className="w-5/12 text-right pr-12">
-                    <h3 className="text-2xl font-bold mb-2">Feature Prioritization</h3>
-                    <p className="text-muted-foreground">Defining the MVP for rapid, cost-effective market entry.</p>
+                    <h3 className="text-2xl font-bold mb-2">{t("designServicePage.strategyFeature3Title")}</h3>
+                    <p className="text-muted-foreground">{t("designServicePage.strategyFeature3Desc")}</p>
                  </div>
                  <div className="w-10 h-10 rounded-full bg-card border-4 border-secondary flex items-center justify-center shadow-[0_0_15px_rgba(var(--secondary),0.5)] z-10">
                     <Target className="w-4 h-4 text-secondary" />
@@ -261,15 +229,17 @@ function ProductStrategy() {
 
 // --- Layout 3: 3D Assets ---
 function Assets3D() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Stand Out with Premium 3D Marketing.
+            {t("designServicePage.assets3dTitle")}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            Elevate your ad campaigns and landing pages with custom 3D assets and high-end visual content.
+            {t("designServicePage.assets3dDesc")}
           </p>
         </div>
 
@@ -285,7 +255,7 @@ function Assets3D() {
                  <div className="w-32 h-32 bg-purple-500/20 rounded-full blur-xl absolute" />
                  <div className="w-24 h-24 border-[8px] border-foreground rounded-full relative z-10 animate-[spin_10s_linear_infinite]" />
               </div>
-              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">Abstract Spline Elements</div>
+              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">{t("designServicePage.asset1Title")}</div>
            </motion.div>
 
            {/* Item 2 */}
@@ -298,7 +268,7 @@ function Assets3D() {
                  <div className="w-32 h-32 bg-cyan-500/20 rounded-full blur-xl absolute" />
                  <div className="w-24 h-32 bg-foreground/10 border border-foreground/30 backdrop-blur-md rounded-2xl relative z-10 rotate-12 shadow-2xl" />
               </div>
-              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">Glassmorphic UI Mockups</div>
+              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">{t("designServicePage.asset2Title")}</div>
            </motion.div>
 
            {/* Item 3 */}
@@ -314,25 +284,25 @@ function Assets3D() {
                     <div className="w-16 h-16 bg-foreground rounded-xl shadow-xl rotate-45 translate-y-4" />
                  </div>
               </div>
-              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">Product Visualization</div>
+              <div className="absolute bottom-6 left-6 font-bold tracking-widest uppercase text-sm">{t("designServicePage.asset3Title")}</div>
            </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-background border border-border p-8 rounded-3xl">
               <Box className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Spline 3D Integration</h3>
-              <p className="text-muted-foreground">Web-optimized, interactive 3D elements that engage users without slowing down your site.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.assets3dFeature1Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.assets3dFeature1Desc")}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl">
               <ImageIcon className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Product Visualization</h3>
-              <p className="text-muted-foreground">Abstract, high-end rendering of products (e.g., tech accessories, premium gear).</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.assets3dFeature2Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.assets3dFeature2Desc")}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl">
               <Sparkles className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Ad Creatives</h3>
-              <p className="text-muted-foreground">Scroll-stopping visual assets engineered strictly for high CTR (Click-Through Rate).</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.assets3dFeature3Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.assets3dFeature3Desc")}</p>
            </div>
         </div>
       </div>
@@ -342,16 +312,18 @@ function Assets3D() {
 
 // --- Layout 4: E-commerce Branding ---
 function EcommerceBranding() {
+  const { t, language } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6 font-serif">
-            Brands That Command Trust.
+            {t("designServicePage.brandingTitle")}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            We craft cohesive, high-trust brand identities specifically tailored for e-commerce and digital platforms.
+            {t("designServicePage.brandingDesc")}
           </p>
         </div>
 
@@ -383,7 +355,12 @@ function EcommerceBranding() {
               >
                  <div className="font-serif text-4xl mb-4">Aa</div>
                  <div className="font-serif text-2xl font-bold mb-2">Playfair Display</div>
-                 <div className="text-sm text-muted-foreground font-sans">Used for primary headings and brand messaging to convey elegance.</div>
+                 <div className="text-sm text-muted-foreground font-sans">
+                   {language === 'fr' 
+                     ? "Utilisé pour les titres principaux et les messages de marque afin de transmettre l'élégance." 
+                     : "Used for primary headings and brand messaging to convey elegance."
+                   }
+                 </div>
               </motion.div>
 
               {/* Packaging Mockup (Abstract Box) */}
@@ -396,7 +373,14 @@ function EcommerceBranding() {
                  {/* Top Flap */}
                  <div className="absolute -top-12 left-0 w-full h-12 bg-muted border-t border-x border-border origin-bottom rotate-x-45" />
                  {/* Logo placeholder */}
-                 <div className="font-serif text-2xl tracking-widest uppercase">BRAND</div>
+                 <div className="relative w-36 h-28 mx-auto">
+                   <Image
+                     src="/logo/logo.png"
+                     alt="Idmisk Logo"
+                     fill
+                     className="object-contain"
+                   />
+                 </div>
               </motion.div>
            </div>
         </div>
@@ -404,18 +388,18 @@ function EcommerceBranding() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-background border border-border p-8 rounded-3xl">
               <Palette className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Visual Identity</h3>
-              <p className="text-muted-foreground">Modern logo design, typography scales, and specific brand guidelines.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.brandingFeature1Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.brandingFeature1Desc")}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl">
               <Type className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">High-Converting Aesthetics</h3>
-              <p className="text-muted-foreground">Designing the visual layout of product pages to maximize Cash On Delivery (COD) trust.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.brandingFeature2Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.brandingFeature2Desc")}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl">
               <ShoppingBag className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Packaging Mockups</h3>
-              <p className="text-muted-foreground">Translating your digital brand into premium physical packaging concepts.</p>
+              <h3 className="text-xl font-bold mb-3">{t("designServicePage.brandingFeature3Title")}</h3>
+              <p className="text-muted-foreground">{t("designServicePage.brandingFeature3Desc")}</p>
            </div>
         </div>
       </div>
@@ -440,7 +424,7 @@ export default function DesignServicePage({ params }: { params: Promise<{ slug: 
         {slug === 'product-strategy' && <ProductStrategy />}
         {slug === '3d-assets' && <Assets3D />}
         {slug === 'ecommerce-branding' && <EcommerceBranding />}
-        <DesignCTA />
+        <CallToActionSection />
       </main>
       <Footer />
     </>

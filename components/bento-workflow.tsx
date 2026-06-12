@@ -2,37 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { Github, CheckCircle } from 'lucide-react'
+import { useLanguage } from '@/hooks/use-language'
 
 // ─────────────────────────────────────────────
 // Card 1: AutoPilot Network
 // ─────────────────────────────────────────────
 function CardDirectAccess() {
-  const profiles = [
-    {
-      initial: 'S',
-      name: 'Sarah K.',
-      rating: '4.9',
-      tag: 'OpenAI',
-      color: 'bg-violet-500/20 text-violet-600',
-      ring: 'ring-violet-400/30',
-    },
-    {
-      initial: 'M',
-      name: 'Marcus T.',
-      rating: '5.0',
-      tag: 'UiPath',
-      color: 'bg-sky-500/20 text-sky-700',
-      ring: 'ring-sky-400/30',
-    },
-    {
-      initial: 'P',
-      name: 'Priya L.',
-      rating: '4.8',
-      tag: 'Snowflake',
-      color: 'bg-rose-500/20 text-rose-700',
-      ring: 'ring-rose-400/30',
-    },
-  ]
+  const { t } = useLanguage()
 
   return (
     <motion.div
@@ -43,54 +19,72 @@ function CardDirectAccess() {
       {/* Card Header bar */}
       <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-muted/30">
         <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-          AutoPilot Network
+          {t('bento.card1Header')}
         </span>
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
           </span>
-          <span className="text-[10px] font-bold tracking-widest text-green-600">LIVE</span>
+          <span className="text-[10px] font-bold tracking-widest text-green-600">{t('bento.card1Live')}</span>
         </div>
       </div>
 
-      {/* Profile list */}
-      <div className="flex flex-col gap-3 p-5 flex-1">
-        {profiles.map((p) => (
-          <div
-            key={p.name}
-            className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-background border border-border/60 hover:border-border transition-colors group"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              {/* Avatar */}
-              <div className="relative flex-shrink-0">
-                <div className={`w-9 h-9 rounded-full ring-2 ${p.ring} flex items-center justify-center text-sm font-bold ${p.color}`}>
-                  {p.initial}
-                </div>
-              </div>
-              {/* Name & rating */}
-              <div className="min-w-0">
-                <p className="text-sm font-semibold text-foreground leading-none">{p.name}</p>
-                <div className="flex items-center gap-1 mt-1">
-                  <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="text-[11px] font-medium text-muted-foreground">{p.rating}</span>
-                </div>
-              </div>
-            </div>
-            {/* Tag pill */}
-            <span className="flex-shrink-0 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-muted text-muted-foreground border border-border whitespace-nowrap">
-              {p.tag}
-            </span>
+      {/* Simulated Chat Interface */}
+      <div className="flex flex-col gap-4 p-5 flex-1 justify-center bg-gradient-to-b from-transparent to-muted/20">
+        {/* Message 1 */}
+        <div className="flex items-start gap-3">
+          <div className="w-8 h-8 rounded-full bg-violet-500/20 text-violet-600 flex items-center justify-center text-xs font-bold ring-2 ring-violet-500/10 shrink-0">
+            S
           </div>
-        ))}
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-foreground">{t('bento.chat1User')}</span>
+              <span className="text-[9px] text-muted-foreground">10:24 AM</span>
+            </div>
+            <div className="p-3 bg-muted/50 border border-border/40 rounded-2xl rounded-tl-none text-xs text-foreground max-w-[90%] leading-relaxed shadow-sm">
+              {t('bento.chat1Text')}
+            </div>
+          </div>
+        </div>
+
+        {/* Message 2 */}
+        <div className="flex items-start gap-3 flex-row-reverse">
+          <div className="w-8 h-8 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-xs font-bold ring-2 ring-secondary/10 shrink-0">
+            ID
+          </div>
+          <div className="flex-1 space-y-1 flex flex-col items-end">
+            <div className="flex items-center gap-2 flex-row-reverse">
+              <span className="text-xs font-bold text-secondary">{t('bento.chat2User')}</span>
+              <span className="text-[9px] text-muted-foreground">10:26 AM</span>
+            </div>
+            <div className="p-3 bg-secondary text-secondary-foreground rounded-2xl rounded-tr-none text-xs max-w-[90%] leading-relaxed shadow-md">
+              {t('bento.chat2Text')}
+            </div>
+          </div>
+        </div>
+
+        {/* Message 3 */}
+        <div className="flex items-start gap-3">
+          <div className="w-8 h-8 rounded-full bg-violet-500/20 text-violet-600 flex items-center justify-center text-xs font-bold ring-2 ring-violet-500/10 shrink-0">
+            S
+          </div>
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-foreground">{t('bento.chat3User')}</span>
+              <span className="text-[9px] text-muted-foreground">10:27 AM</span>
+            </div>
+            <div className="p-3 bg-muted/50 border border-border/40 rounded-2xl rounded-tl-none text-xs text-foreground max-w-[90%] leading-relaxed shadow-sm">
+              {t('bento.chat3Text')}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer text */}
       <div className="px-5 pb-5 mt-auto">
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Direct Discord access to the architects building your system.
+          {t('bento.card1Text')}
         </p>
       </div>
     </motion.div>
@@ -177,6 +171,8 @@ const techItems = [
 ]
 
 function CardTechMatrix() {
+  const { t } = useLanguage()
+
   return (
     <motion.div
       whileHover={{ y: -3, boxShadow: '0 24px 48px -12px rgba(0,0,0,0.08)' }}
@@ -186,10 +182,10 @@ function CardTechMatrix() {
       {/* Card Header bar */}
       <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-muted/30">
         <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-          Tech Stack Matrix
+          {t('bento.card2Header')}
         </span>
         <span className="text-[10px] font-bold tracking-widest text-muted-foreground/60 bg-muted px-2 py-0.5 rounded-md border border-border">
-          20+ TOOLS
+          {t('bento.card2Tools')}
         </span>
       </div>
 
@@ -211,7 +207,7 @@ function CardTechMatrix() {
       {/* Footer text */}
       <div className="px-5 pb-5">
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Enterprise-grade technologies tailored for scalable architecture.
+          {t('bento.card2Text')}
         </p>
       </div>
     </motion.div>
@@ -222,6 +218,8 @@ function CardTechMatrix() {
 // Card 3: Proof-of-Work Verified
 // ─────────────────────────────────────────────
 function CardOwnership() {
+  const { t } = useLanguage()
+
   return (
     <motion.div
       whileHover={{ y: -3, boxShadow: '0 24px 48px -12px rgba(0,0,0,0.08)' }}
@@ -238,21 +236,21 @@ function CardOwnership() {
       </div>
 
       <div className="flex-1">
-        <h3 className="text-xl font-bold text-foreground mb-1">Proof-of-Work Verified</h3>
-        <p className="text-sm text-muted-foreground">Verified deliverable</p>
-        <p className="text-sm text-muted-foreground">Signed Apr 2026</p>
+        <h3 className="text-xl font-bold text-foreground mb-1">{t('bento.card3Header')}</h3>
+        <p className="text-sm text-muted-foreground">{t('bento.card3Sub')}</p>
+        <p className="text-sm text-muted-foreground">{t('bento.card3Date')}</p>
       </div>
 
       <div className="mt-8 mb-4">
         <span className="text-[11px] font-bold tracking-widest text-muted-foreground">
-          BLOCK #1,284,932
+          {t('bento.card3Block')}
         </span>
       </div>
 
       {/* Footer text */}
       <div className="px-5 pb-5 border-t border-border pt-4 -mx-6 mt-auto">
         <p className="text-xs text-muted-foreground leading-relaxed px-6">
-          100% IP and repository ownership transferred to you from day one.
+          {t('bento.card3Text')}
         </p>
       </div>
     </motion.div>
@@ -263,6 +261,8 @@ function CardOwnership() {
 // Card 4: Escrow-Protected Delivery
 // ─────────────────────────────────────────────
 function CardPipeline() {
+  const { t } = useLanguage()
+
   return (
     <motion.div
       whileHover={{ y: -3, boxShadow: '0 24px 48px -12px rgba(0,0,0,0.08)' }}
@@ -272,13 +272,13 @@ function CardPipeline() {
       {/* Card Header bar */}
       <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-muted/30">
         <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-          Escrow-Protected Delivery
+          {t('bento.card4Header')}
         </span>
         <span className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest text-muted-foreground bg-muted border border-border px-2 py-1 rounded-md">
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
-          $1,200 HELD
+          {t('bento.card4Held')}
         </span>
       </div>
 
@@ -318,7 +318,7 @@ function CardPipeline() {
       {/* Footer text */}
       <div className="px-5 pb-5">
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Transparent milestone tracking and agile sprint delivery.
+          {t('bento.card4Text')}
         </p>
       </div>
     </motion.div>
@@ -329,6 +329,8 @@ function CardPipeline() {
 // Root Section
 // ─────────────────────────────────────────────
 export function BentoWorkflow() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative py-24 bg-background border-b border-border/50 overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
@@ -337,10 +339,10 @@ export function BentoWorkflow() {
         {/* Section Header */}
         <div className="mb-14">
           <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-            Client Workflow
+            {t('bento.label')}
           </p>
           <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
-            How we communicate &amp; deliver
+            {t('bento.title')}
           </h2>
         </div>
 

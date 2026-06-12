@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { 
-  Database, Cloud, CreditCard, Github, MessageSquare, Box, Globe, 
+  Database, Cloud, CreditCard, Github, Box, Globe, 
   Cpu, Workflow, Terminal, Wind, Monitor, Layers, Figma, Slack, CloudRain, Server, Code 
 } from 'lucide-react'
+import { useLanguage } from '@/hooks/use-language'
 
 // Inner Orbit (8 items)
 const innerOrbitItems = [
@@ -79,6 +80,8 @@ function OrbitItem({
 }
 
 export function OrbitalIntegrations() {
+  const { t } = useLanguage()
+
   return (
     <section className="py-24 lg:py-32 overflow-hidden bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -89,10 +92,10 @@ export function OrbitalIntegrations() {
           {/* Central Text Block */}
           <div className="relative z-10 text-center max-w-[14rem] lg:max-w-[16rem] pointer-events-none">
             <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground mb-2 text-balance">
-              Ecosystem Integrations
+              {t('ecosystem.title')}
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Connecting your architecture.
+              {t('ecosystem.subtitle')}
             </p>
           </div>
 

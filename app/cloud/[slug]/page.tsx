@@ -4,45 +4,15 @@ import { notFound } from 'next/navigation'
 import { use, useState, useEffect } from 'react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { CalendlyButton } from '@/components/calendly-button'
+import { CallToActionSection } from '@/components/cta-section'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { MessageSquare, Server, Database, GitBranch, ArrowRight, Shield, Zap, Box, Cloud, Network, RefreshCw, Settings, Code2, ShieldCheck } from 'lucide-react'
-
-// --- Global CTA ---
-function CloudCTA() {
-  return (
-    <div className="w-full relative overflow-hidden bg-neutral-950 text-white py-24 px-6 lg:px-8 mt-24">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-blue-600/30 animate-[gradient_8s_linear_infinite] bg-[length:200%_auto]" />
-      </div>
-      
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
-          Secure Your Digital Infrastructure Today.
-        </h2>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <CalendlyButton 
-            text="Schedule a Technical Audit" 
-            className="w-full sm:w-auto px-8 py-4 text-base font-medium rounded-lg bg-white text-neutral-950 hover:bg-neutral-200 transition-colors"
-          />
-          <a
-            href="https://wa.me/212635278125"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium bg-[#25D366] text-white rounded-lg hover:bg-[#20bd5a] transition-colors shadow-lg shadow-[#25D366]/20"
-          >
-            <MessageSquare className="w-5 h-5" />
-            Chat on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { MessageSquare, Server, Database, Box, Cloud, Network, RefreshCw, Settings, Code2, ShieldCheck, Zap } from 'lucide-react'
+import { useLanguage } from '@/hooks/use-language'
 
 // --- Layout 1: Server Management ---
 function ServerManagement() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -56,10 +26,10 @@ function ServerManagement() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-                Enterprise-Grade Cloud Hosting & Containerization.
+                {t('cloudServicePage.serverTitle')}
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-                High-availability server management. We containerize your infrastructure for ultimate scalability and security.
+                {t('cloudServicePage.serverDesc')}
               </p>
             </motion.div>
           </div>
@@ -67,9 +37,9 @@ function ServerManagement() {
           <div className="flex-1 w-full h-[500px] relative perspective-1000">
              {/* Floating Server Stacks */}
              <motion.div 
-               animate={{ y: [-10, 10, -10], rotateX: [10, 5, 10], rotateY: [-10, -5, -10] }}
-               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 transform-style-3d"
+                animate={{ y: [-10, 10, -10], rotateX: [10, 5, 10], rotateY: [-10, -5, -10] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 transform-style-3d"
              >
                 {[1, 2, 3].map((i) => (
                   <div 
@@ -93,24 +63,24 @@ function ServerManagement() {
              className="bg-card border border-border p-8 rounded-3xl shadow-sm"
            >
               <Box className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Docker Containerization</h3>
-              <p className="text-muted-foreground">Isolated, lightweight, and perfectly replicated environments ensuring parity across all stages.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.serverFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.serverFeature1Desc')}</p>
            </motion.div>
            <motion.div 
              whileHover={{ y: -10 }}
              className="bg-card border border-border p-8 rounded-3xl shadow-sm"
            >
               <Settings className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">Custom VPS & PaaS</h3>
-              <p className="text-muted-foreground">Expertise in Linux, Nginx, and Coolify setups. Giving you total control without vendor lock-in.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.serverFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.serverFeature2Desc')}</p>
            </motion.div>
            <motion.div 
              whileHover={{ y: -10 }}
              className="bg-card border border-border p-8 rounded-3xl shadow-sm"
            >
               <Cloud className="w-10 h-10 text-secondary mb-6" />
-              <h3 className="text-xl font-bold mb-3">GCP & AWS Architecture</h3>
-              <p className="text-muted-foreground">Architecting robust cloud-native ecosystems utilizing the most powerful platforms available.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.serverFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.serverFeature3Desc')}</p>
            </motion.div>
         </div>
       </div>
@@ -120,14 +90,16 @@ function ServerManagement() {
 
 // --- Layout 2: Database Architecture ---
 function DatabaseArchitecture() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-24">
         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-          Rock-Solid Database Architecture.
+          {t('cloudServicePage.dbTitle')}
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          We design, structure, and optimize massive relational databases that handle millions of rows without breaking a sweat.
+          {t('cloudServicePage.dbDesc')}
         </p>
       </div>
 
@@ -164,16 +136,16 @@ function DatabaseArchitecture() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm text-center">
-              <h3 className="text-xl font-bold mb-3">Relational Database Mastery</h3>
-              <p className="text-muted-foreground">Deep expertise in MySQL and PostgreSQL. ACID compliance and data integrity guaranteed.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.dbFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.dbFeature1Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm text-center">
-              <h3 className="text-xl font-bold mb-3">Massive Scale</h3>
-              <p className="text-muted-foreground">Proven experience architecting massive structures (e.g., 140+ interconnected tables).</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.dbFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.dbFeature2Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm text-center">
-              <h3 className="text-xl font-bold mb-3">Query Optimization</h3>
-              <p className="text-muted-foreground">Drastically reducing load times with advanced indexing and query restructuring.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.dbFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.dbFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -183,6 +155,7 @@ function DatabaseArchitecture() {
 
 // --- Layout 3: CI/CD Pipelines ---
 function CicdPipelines() {
+  const { t } = useLanguage()
   const { scrollYProgress } = useScroll()
   const lineWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
@@ -190,11 +163,11 @@ function CicdPipelines() {
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32 text-center">
         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-          Automate Your Deployments.<br />
-          <span className="text-secondary">Eliminate Human Error.</span>
+          {t('cloudServicePage.cicdTitle1')}<br />
+          <span className="text-secondary">{t('cloudServicePage.cicdTitle2')}</span>
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Continuous Integration and Continuous Deployment (CI/CD) pipelines that deliver code to production safely and instantly.
+          {t('cloudServicePage.cicdDesc')}
         </p>
       </div>
 
@@ -233,16 +206,16 @@ function CicdPipelines() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Automated Workflows</h3>
-              <p className="text-muted-foreground">Utilizing Bitbucket Pipelines and GitHub Actions to automate testing and build processes flawlessly.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.cicdFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.cicdFeature1Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">OTA Updates</h3>
-              <p className="text-muted-foreground">Pushing live updates directly to mobile apps (ZemExpress style) without app store delays.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.cicdFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.cicdFeature2Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Edge Deployments</h3>
-              <p className="text-muted-foreground">Lightning-fast frontend hosting and scaling with Vercel and Edge network distributions.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.cicdFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.cicdFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -252,6 +225,7 @@ function CicdPipelines() {
 
 // --- Layout 4: Zero-Downtime ---
 function ZeroDowntime() {
+  const { t } = useLanguage()
   const [isMigrated, setIsMigrated] = useState(false)
 
   // Toggle effect for demonstration
@@ -268,10 +242,10 @@ function ZeroDowntime() {
         
         <div className="text-center mb-20">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Seamless Migrations.<br />Zero Seconds of Downtime.
+            {t('cloudServicePage.downtimeTitle1')}<br />{t('cloudServicePage.downtimeTitle2')}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Upgrading your legacy systems or moving to a new cloud provider? We transfer your entire infrastructure while your business keeps running seamlessly.
+            {t('cloudServicePage.downtimeDesc')}
           </p>
         </div>
 
@@ -279,7 +253,7 @@ function ZeroDowntime() {
         <div className="w-full max-w-5xl mx-auto h-[400px] md:h-[500px] rounded-3xl overflow-hidden relative cursor-pointer border border-border shadow-2xl" onClick={() => setIsMigrated(!isMigrated)}>
            {/* Before (Messy Red) */}
            <div className="absolute inset-0 bg-neutral-950 flex flex-col items-center justify-center gap-4 transition-opacity duration-1000" style={{ opacity: isMigrated ? 0 : 1 }}>
-              <div className="absolute top-4 left-4 text-red-500 font-bold uppercase tracking-widest bg-red-500/10 px-4 py-1 rounded-full text-sm border border-red-500/20">Legacy System</div>
+              <div className="absolute top-4 left-4 text-red-500 font-bold uppercase tracking-widest bg-red-500/10 px-4 py-1 rounded-full text-sm border border-red-500/20">{t('cloudServicePage.legacySystem')}</div>
               <Network className="w-32 h-32 text-red-500/50" />
               <div className="flex flex-wrap gap-4 justify-center w-3/4 opacity-50">
                  {[1,2,3,4,5].map(i => <div key={i} className="w-16 h-16 border-2 border-red-500/30 rounded-lg animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
@@ -289,40 +263,40 @@ function ZeroDowntime() {
            {/* After (Clean Green) */}
            <div className="absolute inset-0 bg-neutral-950 flex flex-col items-center justify-center gap-8 transition-opacity duration-1000" style={{ opacity: isMigrated ? 1 : 0 }}>
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.1)_0%,transparent_70%)]" />
-              <div className="absolute top-4 left-4 text-green-400 font-bold uppercase tracking-widest bg-green-500/10 px-4 py-1 rounded-full text-sm border border-green-500/20">Modern Cloud</div>
+              <div className="absolute top-4 left-4 text-green-400 font-bold uppercase tracking-widest bg-green-500/10 px-4 py-1 rounded-full text-sm border border-green-500/20">{t('cloudServicePage.modernCloud')}</div>
               <div className="flex gap-16 relative z-10">
                  <div className="w-24 h-24 bg-green-500/10 border-2 border-green-500/50 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.2)]">
                     <Server className="w-10 h-10 text-green-400" />
-                 </div>
-                 <div className="flex items-center">
+                  </div>
+                  <div className="flex items-center">
                     <div className="w-32 h-1 bg-green-500/30 relative overflow-hidden">
                        <motion.div animate={{ left: ['-100%', '100%'] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="absolute inset-0 w-full h-full bg-green-400 blur-sm" />
                     </div>
-                 </div>
-                 <div className="w-24 h-24 bg-green-500/10 border-2 border-green-500/50 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.2)]">
-                    <Database className="w-10 h-10 text-green-400" />
-                 </div>
+                  </div>
+                  <div className="w-24 h-24 bg-green-500/10 border-2 border-green-500/50 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.2)]">
+                     <Database className="w-10 h-10 text-green-400" />
+                  </div>
               </div>
            </div>
            
            {/* Hint */}
            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-white/50 uppercase tracking-widest flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full backdrop-blur-md">
-              <RefreshCw className="w-3 h-3" /> Click to migrate
+              <RefreshCw className="w-3 h-3" /> {t('cloudServicePage.clickMigrate')}
            </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Risk-Free Transfers</h3>
-              <p className="text-muted-foreground">Meticulous planning, staging environments, and fallback protocols to ensure zero data loss.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.downtimeFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.downtimeFeature1Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Traffic Routing</h3>
-              <p className="text-muted-foreground">Utilizing Cloudflare and load balancers to shift traffic seamlessly during the final DNS cutover.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.downtimeFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.downtimeFeature2Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Legacy Modernization</h3>
-              <p className="text-muted-foreground">Upgrading outdated monolithic architectures to modern, microservices-ready cloud standards.</p>
+              <h3 className="text-xl font-bold mb-3">{t('cloudServicePage.downtimeFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('cloudServicePage.downtimeFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -347,7 +321,7 @@ export default function CloudServicePage({ params }: { params: Promise<{ slug: s
         {slug === 'database-architecture' && <DatabaseArchitecture />}
         {slug === 'cicd-pipelines' && <CicdPipelines />}
         {slug === 'zero-downtime' && <ZeroDowntime />}
-        <CloudCTA />
+        <CallToActionSection />
       </main>
       <Footer />
     </>

@@ -3,48 +3,50 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus } from 'lucide-react'
-
-const faqs = [
-  {
-    q: 'What payment methods do you accept, and is there a refund policy?',
-    a: 'We accept major credit cards, PayPal, and bank transfers. We also offer a 30-day money-back guarantee on all hosting plans.',
-  },
-  {
-    q: 'Do you offer website migration services or assistance?',
-    a: 'Yes, our team can handle full website migration from your current host with minimal downtime. Just reach out and we\'ll manage the process.',
-  },
-  {
-    q: 'What is your customer support like, and how can I get in touch with you?',
-    a: 'Our support team is available 24/7 via email, phone, and live chat. We also maintain a knowledge base for self-service help.',
-  },
-  {
-    q: 'What security measures do you have in place to protect my website and data?',
-    a: 'We use SSL encryption, firewalls, intrusion detection, and regular backups to keep your website and data fully protected.',
-  },
-  {
-    q: 'What programming languages and technologies do you specialize in?',
-    a: 'We work with HTML, CSS, JavaScript, PHP, Python, Laravel, React, and more — plus CMS platforms like WordPress and e-commerce tools like Shopify.',
-  },
-  {
-    q: 'What is your development process like, and how long does it typically take to complete a project?',
-    a: 'We follow a collaborative agile process with regular updates. Timelines depend on project scope and complexity — we\'ll provide a clear plan upfront.',
-  },
-  {
-    q: 'What is your pricing model, and what are your rates for development services?',
-    a: 'We offer both fixed-price and hourly models with competitive, transparent rates tailored to your project scope and budget.',
-  },
-  {
-    q: 'Can you develop a website or application that meets my specific requirements?',
-    a: 'Absolutely. We specialize in custom websites and applications built to match your exact requirements and business goals.',
-  },
-]
+import { useLanguage } from '@/hooks/use-language'
 
 export function Faq() {
+  const { t } = useLanguage()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleQuestion = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index))
   }
+
+  const faqs = [
+    {
+      q: t('faq.q1'),
+      a: t('faq.a1'),
+    },
+    {
+      q: t('faq.q2'),
+      a: t('faq.a2'),
+    },
+    {
+      q: t('faq.q3'),
+      a: t('faq.a3'),
+    },
+    {
+      q: t('faq.q4'),
+      a: t('faq.a4'),
+    },
+    {
+      q: t('faq.q5'),
+      a: t('faq.a5'),
+    },
+    {
+      q: t('faq.q6'),
+      a: t('faq.a6'),
+    },
+    {
+      q: t('faq.q7'),
+      a: t('faq.a7'),
+    },
+    {
+      q: t('faq.q8'),
+      a: t('faq.a8'),
+    },
+  ]
 
   return (
     <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 bg-background border-t border-border overflow-hidden">
@@ -55,7 +57,7 @@ export function Faq() {
         {/* Section Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground" style={{ fontFamily: 'Georgia, serif' }}>
-            Frequently Asked Questions
+            {t('faq.title')}
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto mt-6 rounded-full" />
         </div>

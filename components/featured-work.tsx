@@ -1,128 +1,248 @@
-import Link from 'next/link'
-import { ArrowUpRight, ArrowRight } from 'lucide-react'
-import { CalendlyButton } from './calendly-button'
+'use client'
 
-const projects = [
-  {
-    href: 'https://app.allo-clients.com/lp',
-    title: 'AlloClients SaaS Ecosystem',
-    role: 'Solo Architect · Freelance',
-    description: 'Architected a highly scalable, multi-tenant ERP ecosystem. Engineered complex core modules for automated financial workflows, strict RBAC, and real-time bidirectional data synchronization.',
-    techStack: ['Laravel', 'React.js', 'MySQL', 'Stripe'],
-  },
-  {
-    href: '',
-    title: 'Numa ERP Platform',
-    role: 'Acting CTO · France',
-    description: 'Single-handedly architected and built a massive enterprise SaaS ERP platform (140+ database tables). Features comprehensive modules for Finance, Advanced Stock Control, CRM, and HR management.',
-    techStack: ['Next.js', 'Laravel', 'PostgreSQL', 'Cloud VPS'],
-  },
-  {
-    href: 'https://ohm.ma/Home',
-    title: 'OHM - INRH Portal',
-    role: 'Archipel Digital · Morocco',
-    description: 'Developed the frontend interface for INRH\'s OHM platform. Built with Angular and TypeScript, featuring pixel-perfect responsive design and seamless Strapi CMS integration for dynamic content.',
-    techStack: ['Angular', 'Strapi CMS', 'TypeScript'],
-  },
-]
+import { useState } from 'react'
+import Link from 'next/link'
+import { ArrowUpRight, ArrowRight, Lock } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { CalendlyButton } from './calendly-button'
+import { useLanguage } from '@/hooks/use-language'
+import { ProjectMockup } from './project-mockup'
 
 export function FeaturedWork() {
+  const { language, t } = useLanguage()
+  const [activeCategory, setActiveCategory] = useState('all')
+
+  const categories = [
+    { key: 'all', label: language === 'fr' ? 'Tous' : 'All' },
+    { key: 'saas', label: 'SaaS & ERP' },
+    { key: 'web', label: language === 'fr' ? 'Web & Mobile' : 'Web & Mobile' },
+    { key: 'data', label: language === 'fr' ? 'Data & IA' : 'Data & AI' },
+    { key: 'ecommerce', label: 'E-commerce' },
+  ]
+
+  const projects = [
+    {
+      key: 'alloclients',
+      title: t("portfolioPage.projects.alloclients.title"),
+      category: t("portfolioPage.projects.alloclients.category"),
+      description: t("portfolioPage.projects.alloclients.description"),
+      techStack: ['Laravel', 'React.js', 'MySQL'],
+      href: 'https://app.allo-clients.com/lp',
+      featured: true,
+      categoryKey: 'saas'
+    },
+    {
+      key: 'numa',
+      title: t("portfolioPage.projects.numa.title"),
+      category: t("portfolioPage.projects.numa.category"),
+      description: t("portfolioPage.projects.numa.description"),
+      techStack: ['Next.js', 'Laravel', 'PostgreSQL'],
+      href: '',
+      featured: true,
+      categoryKey: 'saas'
+    },
+    {
+      key: 'ohm',
+      title: t("portfolioPage.projects.ohm.title"),
+      category: t("portfolioPage.projects.ohm.category"),
+      description: t("portfolioPage.projects.ohm.description"),
+      techStack: ['Angular', 'Strapi CMS', 'TypeScript'],
+      href: 'https://ohm.ma/Home',
+      featured: true,
+      categoryKey: 'web'
+    },
+    {
+      key: 'africaTenders',
+      title: t("portfolioPage.projects.africaTenders.title"),
+      category: t("portfolioPage.projects.africaTenders.category"),
+      description: t("portfolioPage.projects.africaTenders.description"),
+      techStack: ['Python', 'NLP', 'Selenium', 'ML'],
+      href: 'https://morocco.ai/events/conferences/MoroccoAI-Conference-2022/',
+      featured: false,
+      categoryKey: 'data'
+    },
+    {
+      key: 'infiniPrint',
+      title: t("portfolioPage.projects.infiniPrint.title"),
+      category: t("portfolioPage.projects.infiniPrint.category"),
+      description: t("portfolioPage.projects.infiniPrint.description"),
+      techStack: ['WordPress', 'WooCommerce', 'Laravel'],
+      href: 'https://infiniprint.ma/',
+      featured: false,
+      categoryKey: 'ecommerce'
+    },
+    {
+      key: 'cyberScale',
+      title: t("portfolioPage.projects.cyberScale.title"),
+      category: t("portfolioPage.projects.cyberScale.category"),
+      description: t("portfolioPage.projects.cyberScale.description"),
+      techStack: ['Laravel', 'React.js', 'React Native'],
+      href: 'https://www.cyber-scale.me/etudes-de-cas/',
+      featured: false,
+      categoryKey: 'web'
+    },
+    {
+      key: 'getProcure',
+      title: t("portfolioPage.projects.getProcure.title"),
+      category: t("portfolioPage.projects.getProcure.category"),
+      description: t("portfolioPage.projects.getProcure.description"),
+      techStack: ['React', 'Laravel', 'Python', 'Scrapy'],
+      href: '',
+      featured: false,
+      categoryKey: 'data'
+    },
+  ]
+
+  const filteredProjects = activeCategory === 'all'
+    ? projects
+    : projects.filter(p => p.categoryKey === activeCategory)
+
   return (
     <section className="py-24 lg:py-32 bg-muted">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-secondary">
-              Featured Projects
-            </p>
-            <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-balance">
-              Systems we&apos;ve architected and shipped
-            </h2>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-sm font-semibold uppercase tracking-widest text-secondary mb-4">
+            {t('featured.label')}
+          </p>
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground text-balance leading-tight">
+            {t('featured.title')}
+          </h2>
+          <div className="mt-6 flex items-center justify-center">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors group"
+            >
+              {t('featured.viewAll')}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors pb-1 border-b border-secondary/30 hover:border-secondary"
-          >
-            View all projects
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Link>
+        </div>
+
+        {/* Category Filter Bar */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
+          {categories.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wide border transition-all duration-300 cursor-pointer ${
+                activeCategory === cat.key
+                  ? 'bg-secondary border-secondary text-secondary-foreground shadow-md shadow-secondary/20'
+                  : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-foreground/20'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {projects.map((project) => {
-            const CardContent = (
-              <div className="flex flex-col flex-1 p-6 lg:p-8">
-                <div className="w-full aspect-[16/9] bg-slate-200 rounded-t-xl mb-6 flex items-center justify-center text-slate-400 text-sm">Image Placeholder</div>
-                {/* Header: Featured Project + Role Pill */}
-                <div className="flex items-center justify-between mb-6">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                      Featured Project
-                    </span>
-                    <span className="text-[10px] font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full whitespace-nowrap">
-                      {project.role}
-                    </span>
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => {
+              const CardContent = (
+                <>
+                  {/* Visual Banner */}
+                  <div className="overflow-hidden">
+                    <ProjectMockup projectKey={project.key} />
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-foreground mb-6 group-hover:text-secondary transition-colors text-balance">
-                    {project.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="flex flex-col flex-1 p-6">
+                    {/* Category + Badge row */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                        {project.featured
+                          ? (language === 'fr' ? 'Projet Phare' : 'Featured')
+                          : (language === 'fr' ? 'Projet' : 'Project')
+                        }
+                      </span>
+                      <span className="text-[10px] font-semibold text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full">
+                        {project.category}
+                      </span>
+                    </div>
 
-                  {/* Description Card */}
-                  <div className="bg-muted/30 rounded-xl p-5 mb-8 flex-1 border border-border/50">
-                    <p className="text-sm font-light text-muted-foreground leading-relaxed">
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-secondary transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1 line-clamp-3">
                       {project.description}
                     </p>
-                  </div>
 
-                  {/* Footer: Read Case Study + Tech Stack */}
-                  <div className="flex items-end justify-between mt-auto">
-                    <div className="flex items-center gap-2 text-secondary font-medium text-sm group-hover:opacity-80 transition-colors mr-4 mb-1">
-                      <span>Read Case Study</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-wrap justify-end gap-x-2 gap-y-2 max-w-[55%]">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[11px] font-medium text-foreground/70"
-                        >
-                          {tech}
+                    {/* Footer */}
+                    <div className="flex items-center justify-between pt-4 border-t border-border/60">
+                      {/* Link or NDA */}
+                      {project.href ? (
+                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-secondary group-hover:gap-2 transition-all">
+                          {language === 'fr' ? 'Voir le projet' : 'View Project'}
+                          <ArrowUpRight className="w-3.5 h-3.5" />
                         </span>
-                      ))}
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                          <Lock className="w-3 h-3" />
+                          NDA
+                        </span>
+                      )}
+
+                      {/* Tech pills */}
+                      <div className="flex flex-wrap justify-end gap-1.5">
+                        {project.techStack.slice(0, 3).map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-[10px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-            );
+                </>
+              )
 
-            const cardClasses = "group flex flex-col bg-card rounded-[2rem] border border-border hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden";
+              const cardClasses = "group flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:border-secondary/30 transition-all duration-300 hover:shadow-lg hover:shadow-black/5 h-full"
 
-            return project.href ? (
-              <a
-                key={project.title}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cardClasses}
-              >
-                {CardContent}
-              </a>
-            ) : (
-              <div key={project.title} className={cardClasses}>
-                {CardContent}
-              </div>
-            );
-          })}
-        </div>
+              return (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  key={project.key}
+                >
+                  {project.href ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cardClasses}
+                    >
+                      {CardContent}
+                    </a>
+                  ) : (
+                    <div className={cardClasses}>
+                      {CardContent}
+                    </div>
+                  )}
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Bottom CTA */}
         <div className="mt-16 flex justify-center">
           <CalendlyButton 
-            text="Book a Discovery Call" 
-            className="px-8 py-4 text-base rounded-lg"
+            text={t('common.bookCall')} 
+            className="px-8 py-4 text-base rounded-xl"
           />
         </div>
 

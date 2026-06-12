@@ -4,46 +4,14 @@ import { notFound } from 'next/navigation'
 import { use, useState, useEffect } from 'react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { CalendlyButton } from '@/components/calendly-button'
+import { CallToActionSection } from '@/components/cta-section'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { MessageSquare, Brain, Code, Database, Network, Settings, Zap, Bot, Smartphone, Terminal, FileText, Layers, RefreshCw } from 'lucide-react'
-
-// --- Global CTA ---
-function AiCTA() {
-  return (
-    <div className="w-full relative overflow-hidden bg-neutral-950 text-white py-24 px-6 lg:px-8 mt-24 border-t border-purple-500/30">
-      {/* Deep futuristic gradient background with neon border glow */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.4)_0%,transparent_50%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent shadow-[0_0_20px_rgba(168,85,247,1)]" />
-      </div>
-      
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
-          Ready to Automate Your Workflows?
-        </h2>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <CalendlyButton 
-            text="Discuss Your AI Project" 
-            className="w-full sm:w-auto px-8 py-4 text-base font-medium rounded-lg bg-purple-600 text-white hover:bg-purple-500 transition-colors shadow-[0_0_30px_rgba(147,51,234,0.4)]"
-          />
-          <a
-            href="https://wa.me/212635278125"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium bg-[#25D366] text-white rounded-lg hover:bg-[#20bd5a] transition-colors shadow-[0_0_30px_rgba(37,211,102,0.2)]"
-          >
-            <MessageSquare className="w-5 h-5" />
-            Message on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { MessageSquare, Brain, Database, Settings, Zap, Bot, Terminal, FileText, Layers } from 'lucide-react'
+import { useLanguage } from '@/hooks/use-language'
 
 // --- Layout 1: NLP Pipelines ---
 function NlpPipelines() {
+  const { t } = useLanguage()
   const { scrollYProgress } = useScroll()
   const opacityText = useTransform(scrollYProgress, [0, 0.3], [1, 0])
   const opacityTable = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
@@ -55,10 +23,10 @@ function NlpPipelines() {
         
         <div className="text-center mb-32 max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            Turn Unstructured Text into Actionable Data.
+            {t('aiServicePage.nlpTitle')}
           </h1>
           <p className="text-lg lg:text-xl text-slate-400 leading-relaxed">
-            Award-winning Natural Language Processing (NLP) pipelines that scrape, parse, and structure massive amounts of complex data automatically.
+            {t('aiServicePage.nlpDesc')}
           </p>
         </div>
 
@@ -99,24 +67,24 @@ function NlpPipelines() {
                  </div>
               </div>
            </motion.div>
-        </div>
+         </div>
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
               <FileText className="w-10 h-10 text-cyan-400 mb-6" />
-              <h3 className="text-xl font-bold mb-3">Intelligent Data Extraction</h3>
-              <p className="text-slate-400">Automated scraping pipelines for complex web sources and documents.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.nlpFeature1Title')}</h3>
+              <p className="text-slate-400">{t('aiServicePage.nlpFeature1Desc')}</p>
            </div>
            <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
               <Brain className="w-10 h-10 text-cyan-400 mb-6" />
-              <h3 className="text-xl font-bold mb-3">Semantic Structuring</h3>
-              <p className="text-slate-400">Using NLP algorithms to clean and organize messy text for deep analysis.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.nlpFeature2Title')}</h3>
+              <p className="text-slate-400">{t('aiServicePage.nlpFeature2Desc')}</p>
            </div>
            <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
               <Database className="w-10 h-10 text-cyan-400 mb-6" />
-              <h3 className="text-xl font-bold mb-3">Big Data Ready</h3>
-              <p className="text-slate-400">Pipelines engineered to handle enterprise-level data loads securely.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.nlpFeature3Title')}</h3>
+              <p className="text-slate-400">{t('aiServicePage.nlpFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -134,6 +102,8 @@ function FilterIcon(props: any) {
 
 // --- Layout 2: LLM Agents ---
 function LlmAgents() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0 overflow-hidden relative">
       {/* Background Neural Net */}
@@ -152,10 +122,10 @@ function LlmAgents() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-24 max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Power Your Business with Custom LLMs.
+            {t('aiServicePage.llmTitle')}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            We integrate advanced Large Language Models (Gemini, GPT) directly into your software to create agents that reason, assist, and execute tasks autonomously.
+            {t('aiServicePage.llmDesc')}
           </p>
         </div>
 
@@ -203,16 +173,16 @@ function LlmAgents() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-card border border-border p-8 rounded-3xl">
-              <h3 className="text-xl font-bold mb-3">Custom AI Agents</h3>
-              <p className="text-muted-foreground">Tailored to your internal knowledge base for instant employee support or client interaction.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.llmFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.llmFeature1Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl">
-              <h3 className="text-xl font-bold mb-3">API Integration Mastery</h3>
-              <p className="text-muted-foreground">Seamless connection to Google AI Studio and OpenAI endpoints.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.llmFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.llmFeature2Desc')}</p>
            </div>
            <div className="bg-card border border-border p-8 rounded-3xl">
-              <h3 className="text-xl font-bold mb-3">Dynamic Decision Making</h3>
-              <p className="text-muted-foreground">AI that doesn't just chat, but triggers actions within your ERP or CRM.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.llmFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.llmFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -222,6 +192,7 @@ function LlmAgents() {
 
 // --- Layout 3: WhatsApp Bots ---
 function WhatsappBots() {
+  const { t } = useLanguage()
   const [messages, setMessages] = useState<number>(0)
 
   useEffect(() => {
@@ -237,10 +208,10 @@ function WhatsappBots() {
         
         <div className="flex-1">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Automate Customer Interactions on WhatsApp.
+            {t('aiServicePage.whatsappTitle')}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-12">
-            Engineered specifically for e-commerce and B2B services. We build smart WhatsApp bots that handle real-time interactions without human intervention.
+            {t('aiServicePage.whatsappDesc')}
           </p>
           <div className="space-y-6">
              <div className="flex gap-4 items-start">
@@ -248,8 +219,8 @@ function WhatsappBots() {
                  <Zap className="w-4 h-4 text-[#25D366]" />
                </div>
                <div>
-                 <h4 className="font-bold">Cash On Delivery (COD) Automation</h4>
-                 <p className="text-muted-foreground text-sm">Automated order confirmation workflows that drastically reduce return rates.</p>
+                 <h4 className="font-bold">{t('aiServicePage.whatsappFeature1Title')}</h4>
+                 <p className="text-muted-foreground text-sm">{t('aiServicePage.whatsappFeature1Desc')}</p>
                </div>
              </div>
              <div className="flex gap-4 items-start">
@@ -257,8 +228,8 @@ function WhatsappBots() {
                  <Brain className="w-4 h-4 text-[#25D366]" />
                </div>
                <div>
-                 <h4 className="font-bold">AI-Powered Support</h4>
-                 <p className="text-muted-foreground text-sm">Bots that understand context and answer complex queries instantly.</p>
+                 <h4 className="font-bold">{t('aiServicePage.whatsappFeature2Title')}</h4>
+                 <p className="text-muted-foreground text-sm">{t('aiServicePage.whatsappFeature2Desc')}</p>
                </div>
              </div>
              <div className="flex gap-4 items-start">
@@ -266,8 +237,8 @@ function WhatsappBots() {
                  <Database className="w-4 h-4 text-[#25D366]" />
                </div>
                <div>
-                 <h4 className="font-bold">ERP/CRM Sync</h4>
-                 <p className="text-muted-foreground text-sm">Every WhatsApp interaction automatically updates your central database.</p>
+                 <h4 className="font-bold">{t('aiServicePage.whatsappFeature3Title')}</h4>
+                 <p className="text-muted-foreground text-sm">{t('aiServicePage.whatsappFeature3Desc')}</p>
                </div>
              </div>
           </div>
@@ -283,7 +254,7 @@ function WhatsappBots() {
                  </div>
                  <div>
                     <div className="font-bold text-sm">AI Assistant</div>
-                    <div className="text-xs text-green-500">Online</div>
+                    <div className="text-xs text-green-500">{t('aiServicePage.whatsappOnline')}</div>
                  </div>
               </div>
               
@@ -294,18 +265,18 @@ function WhatsappBots() {
                  <AnimatePresence>
                    {messages >= 1 && (
                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="self-end bg-secondary text-secondary-foreground px-4 py-2 rounded-2xl rounded-tr-sm max-w-[80%] text-sm shadow-sm">
-                       Hi, I'd like to check the status of my order #8849.
+                       {t('aiServicePage.whatsappMsg1')}
                      </motion.div>
                    )}
                    {messages >= 2 && (
                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="self-start bg-card border border-border px-4 py-2 rounded-2xl rounded-tl-sm max-w-[80%] text-sm shadow-sm">
-                       <span className="flex gap-1 items-center mb-1 text-xs text-muted-foreground"><Bot className="w-3 h-3"/> System checked</span>
-                       Your order #8849 is out for delivery today. It will arrive between 2 PM and 4 PM. 📦
+                       <span className="flex gap-1 items-center mb-1 text-xs text-muted-foreground"><Bot className="w-3 h-3"/> {t('aiServicePage.whatsappChecked')}</span>
+                       {t('aiServicePage.whatsappMsg2')}
                      </motion.div>
                    )}
                    {messages >= 3 && (
                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="self-end bg-secondary text-secondary-foreground px-4 py-2 rounded-2xl rounded-tr-sm max-w-[80%] text-sm shadow-sm">
-                       Great, thanks!
+                       {t('aiServicePage.whatsappMsg3')}
                      </motion.div>
                    )}
                    {messages === 3 && (
@@ -321,7 +292,7 @@ function WhatsappBots() {
               {/* Input Area */}
               <div className="h-16 bg-card border-t border-border flex items-center px-4">
                  <div className="h-10 flex-1 bg-background border border-border rounded-full flex items-center px-4 text-muted-foreground text-sm">
-                    Type a message...
+                    {t('aiServicePage.whatsappType')}
                  </div>
               </div>
            </div>
@@ -334,15 +305,17 @@ function WhatsappBots() {
 
 // --- Layout 4: Process Automation ---
 function ProcessAutomation() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-32 pb-16 lg:pt-40 lg:pb-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-24 max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            Eliminate Manual Work. Scale Operations.
+            {t('aiServicePage.processTitle')}
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground">
-            We connect your disjointed systems, build custom scripts, and automate repetitive tasks so your team can focus on growth.
+            {t('aiServicePage.processDesc')}
           </p>
         </div>
 
@@ -389,16 +362,16 @@ function ProcessAutomation() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            <div className="bg-background border border-border p-8 rounded-3xl text-center shadow-sm">
-              <h3 className="text-xl font-bold mb-3">End-to-End Automation</h3>
-              <p className="text-muted-foreground">Connecting CRMs, payment gateways, and communication tools flawlessly.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.processFeature1Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.processFeature1Desc')}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl text-center shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Custom Scripting</h3>
-              <p className="text-muted-foreground">Python and Node.js scripts designed for complex, specific operational needs.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.processFeature2Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.processFeature2Desc')}</p>
            </div>
            <div className="bg-background border border-border p-8 rounded-3xl text-center shadow-sm">
-              <h3 className="text-xl font-bold mb-3">Error Reduction</h3>
-              <p className="text-muted-foreground">Removing manual data entry bottlenecks to ensure 100% operational accuracy.</p>
+              <h3 className="text-xl font-bold mb-3">{t('aiServicePage.processFeature3Title')}</h3>
+              <p className="text-muted-foreground">{t('aiServicePage.processFeature3Desc')}</p>
            </div>
         </div>
       </div>
@@ -423,7 +396,7 @@ export default function AiServicePage({ params }: { params: Promise<{ slug: stri
         {slug === 'llm-agents' && <LlmAgents />}
         {slug === 'whatsapp-bots' && <WhatsappBots />}
         {slug === 'process-automation' && <ProcessAutomation />}
-        <AiCTA />
+        <CallToActionSection />
       </main>
       <Footer />
     </>

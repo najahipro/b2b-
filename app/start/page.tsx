@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MessageSquare } from 'lucide-react'
+import { useLanguage } from '@/hooks/use-language'
 
 // Simple SVG for Discord icon
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -19,6 +20,7 @@ const DiscordIcon = ({ className }: { className?: string }) => (
 )
 
 export default function StartProjectPage() {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -79,7 +81,7 @@ export default function StartProjectPage() {
               transition={{ duration: 0.5 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
             >
-              Let's talk.
+              {t("startPage.title")}
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -87,7 +89,7 @@ export default function StartProjectPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-lg lg:text-xl text-slate-300 leading-relaxed"
             >
-              Tell us about your project or reach out directly. We'll respond within 24 hours.
+              {t("startPage.subheadline")}
             </motion.p>
           </div>
         </section>
@@ -108,7 +110,7 @@ export default function StartProjectPage() {
                   <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
                     <MessageSquare className="w-5 h-5" />
                   </div>
-                  <h2 className="text-2xl font-bold text-foreground">Send a Message</h2>
+                  <h2 className="text-2xl font-bold text-foreground">{t("startPage.formTitle")}</h2>
                 </div>
 
                 {isSuccess ? (
@@ -120,15 +122,15 @@ export default function StartProjectPage() {
                     <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <MessageSquare className="w-8 h-8 text-secondary" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">Thank you!</h3>
-                    <p className="text-muted-foreground">Your message has been sent. We will get back to you within 24 hours.</p>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{t("startPage.successTitle")}</h3>
+                    <p className="text-muted-foreground">{t("startPage.successDesc")}</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <input type="hidden" name="access_key" value="659a5acb-2a26-4a1e-b2b6-6d9cd6a3ec71" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="firstName" className="text-sm font-medium text-foreground">First Name</label>
+                        <label htmlFor="firstName" className="text-sm font-medium text-foreground">{t("startPage.firstName")}</label>
                         <input 
                           type="text" 
                           id="firstName" 
@@ -141,7 +143,7 @@ export default function StartProjectPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="lastName" className="text-sm font-medium text-foreground">Last Name</label>
+                        <label htmlFor="lastName" className="text-sm font-medium text-foreground">{t("startPage.lastName")}</label>
                         <input 
                           type="text" 
                           id="lastName" 
@@ -157,7 +159,7 @@ export default function StartProjectPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
+                        <label htmlFor="email" className="text-sm font-medium text-foreground">{t("startPage.email")}</label>
                         <input 
                           type="email" 
                           id="email" 
@@ -170,7 +172,7 @@ export default function StartProjectPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium text-foreground">Phone Number</label>
+                        <label htmlFor="phone" className="text-sm font-medium text-foreground">{t("startPage.phone")}</label>
                         <input 
                           type="tel" 
                           id="phone" 
@@ -184,7 +186,7 @@ export default function StartProjectPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="company" className="text-sm font-medium text-foreground">Company</label>
+                      <label htmlFor="company" className="text-sm font-medium text-foreground">{t("startPage.company")}</label>
                       <input 
                         type="text" 
                         id="company" 
@@ -198,7 +200,7 @@ export default function StartProjectPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="service" className="text-sm font-medium text-foreground">Service Required</label>
+                        <label htmlFor="service" className="text-sm font-medium text-foreground">{t("startPage.serviceRequired")}</label>
                         <select 
                           id="service" 
                           name="service"
@@ -207,16 +209,16 @@ export default function StartProjectPage() {
                           required
                           className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all appearance-none" 
                         >
-                          <option value="" disabled>Select a service</option>
-                          <option value="SaaS Development">SaaS Development</option>
-                          <option value="Enterprise ERP System">Enterprise ERP System</option>
-                          <option value="Mobile Application">Mobile Application</option>
-                          <option value="Cloud Infrastructure / DevOps">Cloud Infrastructure / DevOps</option>
-                          <option value="Other">Other</option>
+                          <option value="" disabled>{t("startPage.selectService")}</option>
+                          <option value="SaaS Development">{t("startPage.saasDev")}</option>
+                          <option value="Enterprise ERP System">{t("startPage.erpSystem")}</option>
+                          <option value="Mobile Application">{t("startPage.mobileApp")}</option>
+                          <option value="Cloud Infrastructure / DevOps">{t("startPage.cloudDevOps")}</option>
+                          <option value="Other">{t("startPage.other")}</option>
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="budget" className="text-sm font-medium text-foreground">Estimated Budget</label>
+                        <label htmlFor="budget" className="text-sm font-medium text-foreground">{t("startPage.estimatedBudget")}</label>
                         <select 
                           id="budget" 
                           name="budget"
@@ -225,17 +227,17 @@ export default function StartProjectPage() {
                           required
                           className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all appearance-none" 
                         >
-                          <option value="" disabled>Select a budget</option>
-                          <option value="Under $10k">Under $10k</option>
-                          <option value="$10k - $25k">$10k - $25k</option>
-                          <option value="$25k - $50k">$25k - $50k</option>
-                          <option value="$50k+">$50k+</option>
+                          <option value="" disabled>{t("startPage.selectBudget")}</option>
+                          <option value="Under $10k">{t("startPage.under10k")}</option>
+                          <option value="$10k - $25k">{t("startPage.budget10_25")}</option>
+                          <option value="$25k - $50k">{t("startPage.budget25_50")}</option>
+                          <option value="$50k+">{t("startPage.budget50plus")}</option>
                         </select>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-foreground">Message</label>
+                      <label htmlFor="message" className="text-sm font-medium text-foreground">{t("startPage.message")}</label>
                       <textarea 
                         id="message" 
                         name="message"
@@ -244,7 +246,7 @@ export default function StartProjectPage() {
                         required
                         rows={4}
                         className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none" 
-                        placeholder="Tell us about your project requirements..."
+                        placeholder={t("startPage.messagePlaceholder")}
                       ></textarea>
                     </div>
 
@@ -253,7 +255,7 @@ export default function StartProjectPage() {
                       disabled={isSubmitting}
                       className="w-full bg-foreground text-background hover:bg-foreground/90 font-medium py-3.5 px-6 rounded-xl transition-colors mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      {isSubmitting ? t("startPage.sendingBtn") : t("startPage.sendBtn")}
                     </button>
                   </form>
                 )}
@@ -268,9 +270,9 @@ export default function StartProjectPage() {
               >
                 {/* Discord Block */}
                 <div className="bg-card border border-border rounded-3xl p-8 lg:p-10 shadow-sm flex-1">
-                  <h2 className="text-2xl font-bold text-foreground mb-4">Connect Directly</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">{t("startPage.connectDirectly")}</h2>
                   <p className="text-muted-foreground leading-relaxed mb-8">
-                    Prefer to chat immediately? Join our Discord server to discuss your project, or reach out using the details below.
+                    {t("startPage.discordDesc")}
                   </p>
                   
                   <a 
@@ -280,7 +282,7 @@ export default function StartProjectPage() {
                     className="inline-flex items-center justify-center w-full gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-medium py-4 px-6 rounded-xl transition-colors shadow-sm mb-10"
                   >
                     <DiscordIcon className="w-5 h-5" />
-                    <span>Join our Discord</span>
+                    <span>{t("startPage.joinDiscord")}</span>
                   </a>
 
                   {/* Contact Details */}
@@ -290,7 +292,7 @@ export default function StartProjectPage() {
                         <Mail className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Email</p>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{t("common.email")}</p>
                         <p className="text-foreground font-medium group-hover:text-secondary transition-colors">salah.elhint.dev@gmail.com</p>
                       </div>
                     </a>
@@ -300,7 +302,7 @@ export default function StartProjectPage() {
                         <Phone className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Phone</p>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{t("common.phone")}</p>
                         <p className="text-foreground font-medium group-hover:text-secondary transition-colors">+212 635278125</p>
                       </div>
                     </a>
