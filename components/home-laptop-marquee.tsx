@@ -1,7 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/hooks/use-language'
-
+import Image from 'next/image'
 interface LaptopMockupProps {
   imageSrc: string
   duration: string
@@ -21,14 +21,20 @@ function LaptopMockup({ imageSrc, duration, delay }: LaptopMockupProps) {
         {/* Screen Area */}
         <div className="relative w-full aspect-video bg-neutral-950 overflow-hidden mt-3 rounded-sm border border-neutral-900 group-hover:shadow-inner">
           {/* Screenshot Image */}
-          <img 
-            src={imageSrc} 
-            alt="Project Mockup" 
-            className="absolute top-0 left-0 w-full h-auto object-cover"
+          <div
+            className="absolute top-0 left-0 w-full h-[500%] object-cover"
             style={{
               animation: `pan-vertical ${duration} ease-in-out ${delay} infinite`
             }}
-          />
+          >
+            <Image 
+              src={imageSrc} 
+              alt="Project Mockup" 
+              fill
+              loading="lazy"
+              className="object-cover object-top"
+            />
+          </div>
         </div>
         
         {/* Bottom Lip (Keyboard base) */}
@@ -44,14 +50,14 @@ export function HomeLaptopMarquee() {
   const { t } = useLanguage()
 
   const showcaseItems = [
-    { src: '/assets/project-getprocure.jpg', duration: '12s', delay: '0s' },
-    { src: '/assets/project-alloclients-app.jpg', duration: '16s', delay: '-5s' },
-    { src: '/assets/project-cyberscale.jpg', duration: '20s', delay: '-10s' },
-    { src: '/assets/project-inrh.jpg', duration: '25s', delay: '-2s' },
-    { src: '/assets/project-alloclients-main.jpg', duration: '14s', delay: '-7s' },
-    { src: '/assets/project-nexuserp.jpg', duration: '18s', delay: '-12s' },
-    { src: '/assets/project-ecoportal.jpg', duration: '22s', delay: '-4s' },
-    { src: '/assets/project-printflow.jpg', duration: '15s', delay: '-9s' },
+    { src: '/assets/project-getprocure.webp', duration: '12s', delay: '0s' },
+    { src: '/assets/project-alloclients-app.webp', duration: '16s', delay: '-5s' },
+    { src: '/assets/project-cyberscale.webp', duration: '20s', delay: '-10s' },
+    { src: '/assets/project-inrh.webp', duration: '25s', delay: '-2s' },
+    { src: '/assets/project-alloclients-main.webp', duration: '14s', delay: '-7s' },
+    { src: '/assets/project-nexuserp.webp', duration: '18s', delay: '-12s' },
+    { src: '/assets/project-ecoportal.webp', duration: '22s', delay: '-4s' },
+    { src: '/assets/project-printflow.webp', duration: '15s', delay: '-9s' },
   ]
 
   return (
@@ -84,7 +90,7 @@ export function HomeLaptopMarquee() {
         </div>
       </div>
 
-      {/* Bottom CTA & Socials */}
+      {/* Bottom CTA */}
       <div className="mt-8 mb-8 flex flex-col items-center gap-6">
         <a 
           href="https://wa.me/212631378800"
@@ -94,19 +100,6 @@ export function HomeLaptopMarquee() {
         >
           Book a Discovery Call
         </a>
-
-        {/* Social Icons */}
-        <div className="flex items-center gap-6">
-          <a href="https://wa.me/212631378800" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path d="M16.5 15.5c.3-.6.6-1.5-.6-2.1s-1.8-.9-2.1-.9-.6.3-.9.9-.9 1.2-1.2 1.2-1.2-.3-2.4-1.2s-2.1-2.1-2.4-3c-.3-.9.6-.9 1.2-1.8.3-.3.3-.6 0-.9s-.9-2.1-1.2-2.1-.6 0-.9 0-.6.6-1.2 1.5-.6 2.4-.6 3 1.2 3.6 2.4 4.8 2.7 2.7 4.5 3.3c1.8.6 2.7.6 3.6.3s1.8-1.2 2.1-1.8z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/devstudio130/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors" aria-label="Facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-        </div>
       </div>
 
       {/* Custom CSS for marquee animation */}

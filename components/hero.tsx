@@ -1,10 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-<<<<<<< HEAD
 import Image from 'next/image'
-=======
->>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
 import { motion, useInView, animate } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { CalendlyButton } from './calendly-button'

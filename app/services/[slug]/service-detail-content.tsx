@@ -1,9 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
 import Image from "next/image";
-=======
->>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
 import { useLanguage } from "@/hooks/use-language";
 import { CallToActionSection } from "@/components/cta-section";
 import {
@@ -31,27 +28,16 @@ function EnterpriseSaas() {
           {t("servicesDetailPage.saasDesc")}
         </p>
 
-<<<<<<< HEAD
         {/* Hero Image */}
         <div className="w-full max-w-5xl mx-auto px-4 md:px-0">
           <Image
-            src="/assets/saas-dashboard-hero.png"
+            src="/assets/saas-dashboard-hero.webp"
             alt="SaaS Dashboard Preview"
             width={1200}
             height={800}
-            priority
+            loading="lazy"
             className="w-full max-w-5xl mx-auto rounded-2xl shadow-xl"
           />
-=======
-        {/* Abstract 3D shape representation */}
-        <div className="w-full max-w-4xl mx-auto h-64 md:h-96 rounded-3xl bg-gradient-to-br from-secondary/20 via-background to-border flex items-center justify-center border border-border overflow-hidden relative shadow-2xl">
-          <div className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_50%,#00000005_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff00_50%,#ffffff05_100%)] animate-[spin_20s_linear_infinite]" />
-          <div className="w-32 h-32 md:w-48 md:h-48 border-4 border-secondary/50 rounded-2xl rotate-12 shadow-lg backdrop-blur-md bg-background/50 flex items-center justify-center z-10">
-            <Server className="w-12 h-12 text-secondary" />
-          </div>
-          <div className="w-24 h-24 md:w-32 md:h-32 border border-foreground/20 rounded-full absolute -ml-48 mt-24 animate-pulse z-0" />
-          <div className="w-20 h-20 md:w-24 md:h-24 border-2 border-dashed border-secondary/30 rounded-xl absolute ml-56 -mt-32 rotate-45 z-0" />
->>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
         </div>
       </div>
 
@@ -378,7 +364,6 @@ function ModernFrontend() {
           </p>
         </div>
 
-<<<<<<< HEAD
         {/* Asymmetric Grid Section */}
         <div className="relative">
           {/* Purple Glow Effect */}
@@ -398,10 +383,11 @@ function ModernFrontend() {
               {/* Wide rectangular image */}
               <div className="w-full h-64 bg-muted/50 rounded-2xl relative overflow-hidden flex items-center justify-center border border-border/50">
                  <Image
-                   src="/assets/frontend-speed-hero.png"
+                   src="/assets/frontend-speed-hero.webp"
                    alt="Fast Loading Pages"
                    width={800}
                    height={400}
+                   loading="lazy"
                    className="w-full h-full object-cover"
                  />
               </div>
@@ -420,10 +406,11 @@ function ModernFrontend() {
               {/* Square image */}
               <div className="w-full aspect-square bg-muted/50 rounded-2xl relative overflow-hidden flex items-center justify-center border border-border/50">
                  <Image
-                   src="/assets/frontend-dashboard-square.png"
+                   src="/assets/frontend-dashboard-square.webp"
                    alt="Interactive Dashboards"
                    width={400}
                    height={400}
+                   loading="lazy"
                    className="w-full h-full object-cover"
                  />
               </div>
@@ -447,75 +434,6 @@ function ModernFrontend() {
                   <div className="px-6 py-3 bg-background border border-border rounded-full flex items-center justify-center opacity-50">
                     <div className="w-16 h-2 bg-muted rounded-full" />
                   </div>
-=======
-        {/* Bento Box Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-          {/* Large Tile */}
-          <div className="md:col-span-2 bg-card border border-border rounded-3xl p-8 shadow-sm flex flex-col justify-between relative overflow-hidden group">
-            <div className="relative z-10 max-w-sm">
-              <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-6">
-                <Layout className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">
-                {t("servicesDetailPage.frontendCard1Title")}
-              </h3>
-              <p className="text-muted-foreground">
-                {t("servicesDetailPage.frontendCard1Desc")}
-              </p>
-            </div>
-            <div className="absolute right-0 bottom-0 p-8 translate-x-1/4 translate-y-1/4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-              <div className="w-64 h-64 bg-secondary/5 rounded-full blur-3xl absolute" />
-              <div className="w-48 h-32 bg-background border border-border rounded-xl shadow-xl p-4 flex flex-col gap-3 rotate-[-10deg]">
-                <div className="w-full h-8 bg-muted rounded-md" />
-                <div className="flex gap-2">
-                  <div className="w-1/2 h-8 bg-secondary/20 rounded-md" />
-                  <div className="w-1/2 h-8 bg-muted rounded-md" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Medium Tile 1 */}
-          <div className="bg-card border border-border rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden group">
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-3">
-                {t("servicesDetailPage.frontendCard2Title")}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {t("servicesDetailPage.frontendCard2Desc")}
-              </p>
-            </div>
-            <div className="mt-auto pt-8 flex items-end justify-center">
-              <div className="flex items-end gap-2 h-24 w-full">
-                {[40, 70, 45, 90, 60].map((h, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-secondary/20 rounded-t-sm transition-all duration-500 group-hover:bg-secondary/40"
-                    style={{ height: `${h}%` }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Medium Tile 2 */}
-          <div className="md:col-span-3 bg-card border border-border rounded-3xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between overflow-hidden relative">
-            <div className="md:w-1/2 relative z-10">
-              <h3 className="text-2xl font-bold mb-3">
-                {t("servicesDetailPage.frontendCard3Title")}
-              </h3>
-              <p className="text-muted-foreground">
-                {t("servicesDetailPage.frontendCard3Desc")}
-              </p>
-            </div>
-            <div className="md:w-1/2 mt-8 md:mt-0 flex justify-end relative">
-              <div className="flex gap-4">
-                <button className="px-6 py-3 bg-secondary text-secondary-foreground rounded-full font-medium shadow-lg hover:scale-105 transition-transform">
-                  Idmisk
-                </button>
-                <div className="px-6 py-3 bg-background border border-border rounded-full flex items-center justify-center opacity-50">
-                  <div className="w-16 h-2 bg-muted rounded-full" />
->>>>>>> 6e8b5ab6cdc8bad5f66b8a8079f6262858c1541b
                 </div>
               </div>
             </div>
