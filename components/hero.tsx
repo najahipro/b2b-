@@ -99,3 +99,5 @@ export function Hero() {
     </section>
   )
 }
+
+// Dummy comment to force a commit
