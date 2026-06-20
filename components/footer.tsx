@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Globe, Github, Linkedin, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Globe, Github, Linkedin, Instagram, Facebook } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { Logo } from "./logo";
 
@@ -78,6 +78,15 @@ export function Footer() {
                   aria-label="Discord"
                 >
                   <DiscordIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61591365110950"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-secondary transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
                 </a>
               </div>
             </div>
