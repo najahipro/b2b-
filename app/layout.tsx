@@ -41,6 +41,11 @@ export const metadata: Metadata = {
       "Elite two-person engineering team building custom SaaS platforms for global enterprise clients.",
     type: "website",
   },
+  verification: {
+    other: {
+      "facebook-domain-verification": "ea79qc59tsleol0vsh5omphnz4nht5",
+    },
+  },
 };
 
 export default function RootLayout({
