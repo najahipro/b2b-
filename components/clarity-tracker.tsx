@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { initClarity, trackPageView } from "@/lib/clarity";
 
-export function ClarityTracker() {
+function ClarityTrackerInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -22,4 +22,12 @@ export function ClarityTracker() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+export function ClarityTracker() {
+  return (
+    <Suspense fallback={null}>
+      <ClarityTrackerInner />
+    </Suspense>
+  );
 }

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -14,18 +15,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Idmisk | Enterprise SaaS Architecture & Development",
+  title: "Idmisk | Web Development, Digital Marketing & Car Rental Software",
   description:
-    "Elite two-person engineering team building custom SaaS platforms, multi-tenant ERPs, and mobile applications for global enterprise clients. Direct access to senior architects, zero agency bloat.",
+    "Idmisk is a digital agency specializing in Web & Mobile Development, Digital Marketing Strategies, and Specialized Car Rental Software & Fleet Management Platforms.",
   keywords: [
-    "SaaS development",
-    "enterprise software",
-    "custom ERP",
-    "system architecture",
-    "DevOps",
-    "cloud infrastructure",
+    "Web Development",
+    "Création Site Web",
+    "Digital Marketing",
+    "Marketing Digital",
+    "Car Rental Software",
+    "Location de voitures",
+    "SaaS Development",
+    "Custom ERP",
   ],
-  authors: [{ name: "Idmisk" }],
+  authors: [{ name: "Idmisk Agency" }],
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -37,9 +40,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Idmisk | Enterprise SaaS Architecture & Development",
+    title: "Idmisk | Web Development, Digital Marketing & Car Rental Software",
     description:
-      "Elite two-person engineering team building custom SaaS platforms for global enterprise clients.",
+      "Digital agency specializing in Web & Mobile Development, Digital Marketing Strategies, and Specialized Car Rental Software.",
     type: "website",
   },
   verification: {
@@ -61,7 +64,9 @@ export default function RootLayout({
           {children}
           <WhatsAppFloat />
         </LanguageProvider>
-        <ClarityTracker />
+        <Suspense fallback={null}>
+          <ClarityTracker />
+        </Suspense>
         {process.env.NODE_ENV === "production" && <Analytics />}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
