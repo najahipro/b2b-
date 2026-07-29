@@ -96,17 +96,17 @@ export default function AboutPage() {
                 {/* Profile Image */}
                 <div className="w-32 h-32 md:w-48 md:h-48 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center border-2 border-secondary/20 overflow-hidden relative">
                   <Image
-                    src="/salah-profile.jpg"
-                    alt="Salah E. - Lead Full-Stack Engineer"
+                    src="/placeholder-logo.svg"
+                    alt="Idmisk Agency - Création Site Web & Marketing Digital"
                     fill
-                    className="object-cover"
+                    className="object-contain p-4"
                   />
                 </div>
 
                 {/* Content */}
                 <div className="text-center md:text-left">
                   <h3 className="text-2xl font-bold text-foreground">
-                    Salah E.
+                    Idmisk Agency
                   </h3>
                   <p className="text-secondary font-medium mt-1">
                     {t("aboutPage.architectRole")}
@@ -116,12 +116,12 @@ export default function AboutPage() {
                   </p>
                   <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
                     {[
-                      "Laravel",
-                      "React.js",
-                      "Node.js",
-                      "Python",
-                      "Cloud VPS & DevOps",
-                      "System Architecture",
+                      "Création Site Web",
+                      "Marketing Digital",
+                      "Next.js & React",
+                      "SEO & Acquisition",
+                      "SaaS & ERP Platforms",
+                      "AI & Automations",
                     ].map((skill) => (
                       <span
                         key={skill}

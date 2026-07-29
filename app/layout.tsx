@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { LanguageProvider } from "@/hooks/use-language";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { ClarityTracker } from "@/components/clarity-tracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -60,6 +61,7 @@ export default function RootLayout({
           {children}
           <WhatsAppFloat />
         </LanguageProvider>
+        <ClarityTracker />
         {process.env.NODE_ENV === "production" && <Analytics />}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

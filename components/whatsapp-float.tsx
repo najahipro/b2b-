@@ -9,7 +9,7 @@ export function WhatsAppFloat() {
   const { language } = useLanguage()
   const [showTooltip, setShowTooltip] = useState(false)
 
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '212635278125'
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '212604545894'
   
   const welcomeMessage = language === 'fr' 
     ? `Bonjour l'équipe Idmisk, je souhaite obtenir des informations sur vos services digitaux.`

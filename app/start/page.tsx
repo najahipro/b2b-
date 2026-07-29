@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MessageSquare } from 'lucide-react'
 import { useLanguage } from '@/hooks/use-language'
+import { trackEvent } from '@/lib/clarity'
 
 // Simple SVG for Discord icon
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -41,6 +42,7 @@ export default function StartProjectPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    trackEvent("contact_form_submission", { service: formData.service, budget: formData.budget })
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -210,6 +212,8 @@ export default function StartProjectPage() {
                           className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all appearance-none" 
                         >
                           <option value="" disabled>{t("startPage.selectService")}</option>
+                          <option value="Creation Site Web">Création Site Web / Website Creation</option>
+                          <option value="Marketing Digital">Marketing Digital / Digital Marketing</option>
                           <option value="SaaS Development">{t("startPage.saasDev")}</option>
                           <option value="Enterprise ERP System">{t("startPage.erpSystem")}</option>
                           <option value="Mobile Application">{t("startPage.mobileApp")}</option>
@@ -287,23 +291,23 @@ export default function StartProjectPage() {
 
                   {/* Contact Details */}
                   <div className="space-y-6 pt-8 border-t border-border">
-                    <a href="mailto:salah.elhint.dev@gmail.com" className="flex items-center gap-4 group">
+                    <a href="mailto:contact@idmisk.com" className="flex items-center gap-4 group" onClick={() => trackEvent("email_click", { email: "contact@idmisk.com" })}>
                       <div className="w-12 h-12 rounded-full border border-border bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-secondary/10 group-hover:text-secondary group-hover:border-secondary/30 transition-all">
                         <Mail className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{t("common.email")}</p>
-                        <p className="text-foreground font-medium group-hover:text-secondary transition-colors">salah.elhint.dev@gmail.com</p>
+                        <p className="text-foreground font-medium group-hover:text-secondary transition-colors">contact@idmisk.com</p>
                       </div>
                     </a>
                     
-                    <a href="tel:+212635278125" className="flex items-center gap-4 group">
+                    <a href="tel:+212604545894" className="flex items-center gap-4 group">
                       <div className="w-12 h-12 rounded-full border border-border bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-secondary/10 group-hover:text-secondary group-hover:border-secondary/30 transition-all">
                         <Phone className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{t("common.phone")}</p>
-                        <p className="text-foreground font-medium group-hover:text-secondary transition-colors">+212 635278125</p>
+                        <p className="text-foreground font-medium group-hover:text-secondary transition-colors">+212 604 545 894</p>
                       </div>
                     </a>
                   </div>

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CalendlyButton } from './calendly-button'
 import { useLanguage } from '@/hooks/use-language'
 import { ProjectMockup } from './project-mockup'
+import { trackEvent } from '@/lib/clarity'
 
 export function FeaturedWork() {
   const { language, t } = useLanguage()
@@ -224,6 +225,7 @@ export function FeaturedWork() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cardClasses}
+                      onClick={() => trackEvent("project_click", { project_key: project.key, project_title: project.title })}
                     >
                       {CardContent}
                     </a>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, Globe, Github, Linkedin, Instagram, Facebook } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { Logo } from "./logo";
+import { trackEvent } from "@/lib/clarity";
 
 const DiscordIcon = ({ className }: { className?: string }) => (
   <svg
@@ -35,29 +36,32 @@ export function Footer() {
               </p>
               <div className="mt-6 flex items-center gap-4">
                 <a
-                  href="https://portfoliosalah.com/"
+                  href="https://idmisk.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="Website"
+                  onClick={() => trackEvent("external_link_click", { url: "https://idmisk.com/" })}
                 >
                   <Globe className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://github.com/SALAH-ELHINT"
+                  href="https://github.com/idmisk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="GitHub"
+                  onClick={() => trackEvent("github_click", { url: "https://github.com/idmisk" })}
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/salah-elhint-70447925b/"
+                  href="https://www.linkedin.com/company/idmisk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="LinkedIn"
+                  onClick={() => trackEvent("linkedin_click", { url: "https://www.linkedin.com/company/idmisk" })}
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -67,6 +71,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="Instagram"
+                  onClick={() => trackEvent("external_link_click", { url: "https://www.instagram.com/devstudio130/" })}
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -76,6 +81,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="Discord"
+                  onClick={() => trackEvent("external_link_click", { url: "https://discord.gg/yourserver" })}
                 >
                   <DiscordIcon className="w-5 h-5" />
                 </a>
@@ -85,6 +91,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-secondary transition-colors"
                   aria-label="Facebook"
+                  onClick={() => trackEvent("external_link_click", { url: "https://www.facebook.com/profile.php?id=61591365110950" })}
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -100,11 +107,11 @@ export function Footer() {
               <ul className="mt-6 space-y-4">
                 <li className="flex items-center gap-3 text-muted-foreground text-sm">
                   <Phone className="w-5 h-5 text-secondary shrink-0" />
-                  <span>+212 6 35 27 81 25</span>
+                  <a href="tel:+212604545894" className="hover:text-foreground transition-colors">+212 604 545 894</a>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground text-sm">
                   <Mail className="w-5 h-5 text-secondary shrink-0" />
-                  <span>salah.elhint.dev@gmail.com</span>
+                  <a href="mailto:contact@idmisk.com" className="hover:text-foreground transition-colors">contact@idmisk.com</a>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground text-sm">
                   <MapPin className="w-5 h-5 text-secondary shrink-0" />
@@ -120,8 +127,8 @@ export function Footer() {
                 <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-secondary"></span>
               </h3>
               <ul className="mt-6 space-y-2 text-sm text-gray-400">
-                <li className="font-medium text-foreground">Idmisk</li>
-                <li>(Represented by Salah Elhint)</li>
+                <li className="font-medium text-foreground">Idmisk Agency</li>
+                <li>(Création Site Web & Marketing Digital)</li>
                 <li>HAY IFRIQUIA RUE 21 N 06, Casablanca – Maroc</li>
                 <li className="pt-2">ICE : 003734117000059</li>
                 <li>IF : 66291238</li>
@@ -138,7 +145,10 @@ export function Footer() {
               <p className="mt-6 text-sm text-muted-foreground mb-4 leading-relaxed">
                 {t('footer.newsletterDesc')}
               </p>
-              <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-3" onSubmit={(e) => {
+                e.preventDefault();
+                trackEvent("newsletter_subscribe_attempt");
+              }}>
                 <input
                   suppressHydrationWarning
                   type="email"
